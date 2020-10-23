@@ -9,12 +9,6 @@ class Builds extends Component
 {
     public $builds;
 
-    public function mount(Firestore $firestore)
-    {
-        $db = $firestore->database();
-        dd($db->collections('Builds')->documents());
-    }
-
     public function render()
     {
         return view('livewire.builds');

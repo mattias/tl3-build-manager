@@ -16,11 +16,4 @@ class BuildsTest extends TestCase
             ->assertSuccessful()
             ->assertSeeLivewire('builds');
     }
-
-    /** @test */
-    public function can_show_data_from_firebase()
-    {
-        Livewire::test('builds')
-            ->assertNotSet('builds', '');
-    }
 }
