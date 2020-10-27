@@ -25,28 +25,26 @@
                     <tbody class="bg-white divide-y divide-gray-200" x-max="1">
                         @if ($data)
                             @foreach ($data as $row)
-                                @isset($row['name'])
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-                                            <div class="text-sm leading-5 text-gray-900">@isset($row['name'])
-                                                {{ $row['name'] }} @endisset
-                                            </div>
-                                            <div class="text-sm leading-5 text-gray-500">@isset($row['author'])
-                                                {{ $row['author'] }} @endisset
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                            @isset($row['description']) {{ $row['description'] }} @endisset
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                            @isset($row['votes']) {{ $row['votes'] }} @endisset
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                            @isset($row['link'])<a href="{{ $row['link'] }}"
-                                                class="text-indigo-600 hover:text-indigo-900">Link</a>@endisset
-                                        </td>
-                                    </tr>
-                                @endisset
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-no-wrap">
+                                        <div class="text-sm leading-5 text-gray-900">@isset($row['name'])
+                                            {{ $row['name'] }} @endisset
+                                        </div>
+                                        <div class="text-sm leading-5 text-gray-500">@isset($row['author'])
+                                            {{ $row['author'] }} @endisset
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                                        @isset($row['description']) {{ $row['description'] }} @endisset
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                                        @isset($row['votes']) {{ $row['votes'] }} @endisset
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                        @isset($row['link'])<a href="{{ $row['link'] }}"
+                                            class="text-indigo-600 hover:text-indigo-900">Link</a>@endisset
+                                    </td>
+                                </tr>
                             @endforeach
                         @endif
                     </tbody>

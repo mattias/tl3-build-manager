@@ -1,5 +1,8 @@
 <div>
     <x-table :data="$builds"></x-table>
+    <div>
+        {!! $buildsLinks !!}
+    </div>
 </div>
 
 
@@ -28,10 +31,11 @@
 
             const snapshot = db.collection('Builds').get().then(doc => {
                 doc.forEach(row => {
-                    data.push(row.data());
+                    if(row.data().name) data.push(row.data());
                 });
 
-                @this.builds = data;
+                @this.buildsRaw = data;
+                @this.emitSelf('buildsUpdated');
             });
         });
 
