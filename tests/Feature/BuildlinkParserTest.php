@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Helpers\BuildlinkParser;
 
-class SkillParserTest extends TestCase
+class BuildlinkParserTest extends TestCase
 {
     /** @test */
     public function can_parse_buildlink_into_readable_data()
@@ -65,7 +65,7 @@ class SkillParserTest extends TestCase
             'tree1' => [6, 0, 0, 6, 10, 0, 0],
             'tree2' => [0, 1, 1, 0, 6, 0, 0],
             'relicskills' => [0, 1, 0, 1, 1, 1, 0, 0, 0, 0],
-            'hotbar' => [dechex(12), dechex(20), dechex(21), dechex(15), 9, dechex(16), 0, 1, 4],
+            'hotbar' => [12, 20, 21, 15, 9, 16, 0, 1, 4],
             'legendarium' => [2, 4, 7],
         ];
 
