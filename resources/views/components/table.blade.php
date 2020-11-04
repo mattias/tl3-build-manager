@@ -19,7 +19,10 @@
                                 class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Votes
                             </th>
-                            <th class="px-6 py-3 bg-gray-50"></th>
+                            <th
+                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                Hotbar
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200" x-max="1">
@@ -40,9 +43,8 @@
                                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                                         @isset($row['votes']) {{ $row['votes'] }} @endisset
                                     </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                        @isset($row['link'])<a href="{{ $row['link'] }}"
-                                            class="text-indigo-600 hover:text-indigo-900">Link</a>@endisset
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                                        @isset($row['link']) @livewire('build-hotbar', ['buildlink' => $row['link']]) @endisset
                                     </td>
                                 </tr>
                             @endforeach
