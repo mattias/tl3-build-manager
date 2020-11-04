@@ -8,12 +8,35 @@ class BuildlinkParser
 {
     // Classes
     const DUSK_MAGE = 'dm';
+    const FORGED = 'forged';
+    const RAILMASTER = 'railmaster';
+    const SHARPSHOOTER = 'ss';
 
     // Relics
+    const BANE = 'b';
+    const FLAMING_DESTROYER = 'fd';
     const BLOOD_DRINKER = 'bd';
+    const COLDHEART = 'ch';
+    const ELECTRODE = 'el';
+
+    // Class positions
+    const CLASS_TREE1_POSITIONS = [
+        self::DUSK_MAGE => [3, 7, 8, 9, 4, 5, 6],
+        self::FORGED => [3, 4, 5, 6, 7, 8, 9],
+        self::RAILMASTER => [3, 4, 5, 7, 9, 6, 8],
+        self::SHARPSHOOTER => [3, 9, 8, 7, 6, 5, 4],
+    ];
+
+    const CLASS_TREE2_POSITIONS = [
+        self::DUSK_MAGE => [10, 12, 15, 13, 16, 14, 11],
+        self::FORGED => [10, 11, 12, 13, 15, 16, 14],
+        self::RAILMASTER => [10, 11, 12, 13, 14, 15, 16],
+        self::SHARPSHOOTER => [10, 14, 11, 12, 13, 15, 16],
+    ];
 
     protected $buildlink;
     protected $buildStart;
+    protected $class;
 
     public function parse(string $buildlink): array
     {
@@ -23,7 +46,7 @@ class BuildlinkParser
 
         $parsed = [];
         $parsed['buildnumber'] = $this->getBuildnumber();
-        $parsed['class'] = $this->getClass();
+        $parsed['class'] = $this->class = $this->getClass();
         $parsed['relic'] = $this->getRelic();
         $parsed['tree1'] = $this->getTree1();
         $parsed['tree2'] = $this->getTree2();
@@ -72,7 +95,7 @@ class BuildlinkParser
     private function getTree1(): array
     {
         $tree = [];
-        $positions = [3, 7, 8, 9, 4, 5, 6];
+        $positions = self::CLASS_TREE1_POSITIONS[$this->class];
 
         foreach ($positions as $pos) {
             $tree[] = $this->chardec($this->getDataFromPos($this->getPosition($pos)));
@@ -84,7 +107,7 @@ class BuildlinkParser
     private function getTree2(): array
     {
         $tree = [];
-        $positions = [10, 12, 15, 13, 16, 14, 11];
+        $positions = self::CLASS_TREE2_POSITIONS[$this->class];
 
         foreach ($positions as $pos) {
             $tree[] = $this->chardec($this->getDataFromPos($this->getPosition($pos)));
