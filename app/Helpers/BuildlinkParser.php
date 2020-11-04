@@ -2,8 +2,6 @@
 
 namespace App\Helpers;
 
-use phpDocumentor\Reflection\Types\Mixed_;
-
 class BuildlinkParser
 {
     // Classes
