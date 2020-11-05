@@ -5,24 +5,24 @@ namespace App\Helpers;
 class BuildlinkParser
 {
     // Classes
-    const DUSK_MAGE = 'dm';
+    const DUSK_MAGE = 'duskmage';
     const FORGED = 'forged';
     const RAILMASTER = 'railmaster';
-    const SHARPSHOOTER = 'ss';
+    const SHARPSHOOTER = 'sharpshooter';
 
     // Relics
-    const BANE = 'b';
-    const FLAMING_DESTROYER = 'fd';
-    const BLOOD_DRINKER = 'bd';
-    const COLDHEART = 'ch';
-    const ELECTRODE = 'el';
+    const BANE = 'bane';
+    const FLAMING_DESTROYER = 'flamingdestroyer';
+    const BLOOD_DRINKER = 'blooddrinker';
+    const COLDHEART = 'coldheart';
+    const ELECTRODE = 'electrode';
 
     // Class positions
     const CLASS_TREE1_POSITIONS = [
         self::DUSK_MAGE => [3, 7, 8, 9, 4, 5, 6],
         self::FORGED => [3, 4, 5, 6, 7, 8, 9],
         self::RAILMASTER => [3, 4, 5, 7, 9, 6, 8],
-        self::SHARPSHOOTER => [3, 9, 8, 7, 6, 5, 4],
+        self::SHARPSHOOTER => [3, 9, 8, 7, 5, 6, 4],
     ];
 
     const CLASS_TREE2_POSITIONS = [
@@ -43,7 +43,6 @@ class BuildlinkParser
         $this->buildStart += 7; // Moves to the beginning of the data
 
         $parsed = [];
-        $parsed['buildnumber'] = $this->getBuildnumber();
         $parsed['class'] = $this->class = $this->getClass();
         $parsed['relic'] = $this->getRelic();
         $parsed['tree1'] = $this->getTree1();
@@ -55,19 +54,23 @@ class BuildlinkParser
         return $parsed;
     }
 
-    private function getBuildnumber(): int
+    private function getClass(): string
     {
-        return (int) $this->getDataFromPos(
-            $this->getPosition(1)
+        return $this->getClassFromNumber(
+            (int) $this->getDataFromPos(
+                $this->getPosition(1)
+            )
         );
     }
 
-    private function getClass(): string
+    private function getClassFromNumber(int $num): string
     {
-        $start = strpos($this->buildlink, '-');
-        $start++; // to get rid of the dash
-        $end = strpos($this->buildlink, '.', $start);
-        return substr($this->buildlink, $start, $end - $start);
+        return [
+            self::DUSK_MAGE,
+            self::FORGED,
+            self::RAILMASTER,
+            self::SHARPSHOOTER,
+        ][$this->zeroBased($num)];
     }
 
     private function getRelic(): string
@@ -82,11 +85,11 @@ class BuildlinkParser
     private function getRelicFromNumber(int $num): string
     {
         return [
-            'b',
-            'fd',
-            'bd',
-            'ch',
-            'el',
+            self::BANE,
+            self::FLAMING_DESTROYER,
+            self::BLOOD_DRINKER,
+            self::COLDHEART,
+            self::ELECTRODE,
         ][$this->zeroBased($num)];
     }
 
