@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Helpers\BuildlinkParser;
+use App\Helpers\CharacterBuild;
 
 class BuildlinkParserTest extends TestCase
 {
@@ -16,113 +17,113 @@ class BuildlinkParserTest extends TestCase
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html?build=13156723471642531000010010cfhap8614;1;28;33";
 
         $expected = [
-            'class' => BuildlinkParser::DUSK_MAGE,
-            'relic' => BuildlinkParser::BLOOD_DRINKER,
+            'class' => CharacterBuild::DUSK_MAGE,
+            'relic' => CharacterBuild::BLOOD_DRINKER,
             'tree1' => [
-                'name' => BuildlinkParser::LIGHT,
+                'name' => CharacterBuild::LIGHT,
                 'skills' => [
                     [
-                        'name' => BuildlinkParser::HOLY_BOLT,
+                        'name' => CharacterBuild::HOLY_BOLT,
                         'points' => 1,
                     ],
                     [
-                        'name' => BuildlinkParser::RADIANT_BLAST,
+                        'name' => CharacterBuild::RADIANT_BLAST,
                         'points' => 2,
                     ],
                     [
-                        'name' => BuildlinkParser::CONCENCRATION,
+                        'name' => CharacterBuild::CONCENCRATION,
                         'points' => 3,
                     ],
                     [
-                        'name' => BuildlinkParser::LIGHT_SPEAR,
+                        'name' => CharacterBuild::LIGHT_SPEAR,
                         'points' => 4,
                     ],
                     [
-                        'name' => BuildlinkParser::HOLY_FURY,
+                        'name' => CharacterBuild::HOLY_FURY,
                         'points' => 5,
                     ],
                     [
-                        'name' => BuildlinkParser::LUMONOUS_RUN,
+                        'name' => CharacterBuild::LUMONOUS_RUN,
                         'points' => 6,
                     ],
                     [
-                        'name' => BuildlinkParser::ABSOLVER,
+                        'name' => CharacterBuild::ABSOLVER,
                         'points' => 7,
                     ],
                 ],
             ],
             'tree2' => [
-                'name' => BuildlinkParser::DARK,
+                'name' => CharacterBuild::DARK,
                 'skills' => [
                     [
-                        'name' => BuildlinkParser::UNHOLY_BOLT,
+                        'name' => CharacterBuild::UNHOLY_BOLT,
                         'points' => 7,
                     ],
                     [
-                        'name' => BuildlinkParser::DARK_SPEARS,
+                        'name' => CharacterBuild::DARK_SPEARS,
                         'points' => 6,
                     ],
                     [
-                        'name' => BuildlinkParser::SHADOW_STEP,
+                        'name' => CharacterBuild::SHADOW_STEP,
                         'points' => 5,
                     ],
                     [
-                        'name' => BuildlinkParser::SPIRIT_WELL,
+                        'name' => CharacterBuild::SPIRIT_WELL,
                         'points' => 4,
                     ],
                     [
-                        'name' => BuildlinkParser::ENERGY_SPIKE,
+                        'name' => CharacterBuild::ENERGY_SPIKE,
                         'points' => 3,
                     ],
                     [
-                        'name' => BuildlinkParser::DAMNATION,
+                        'name' => CharacterBuild::DAMNATION,
                         'points' => 2,
                     ],
                     [
-                        'name' => BuildlinkParser::ENTROPY,
+                        'name' => CharacterBuild::ENTROPY,
                         'points' => 1,
                     ],
                 ],
             ],
             'relicskills' => [
                 [
-                    'name' => BuildlinkParser::SPINNINGBLADE,
+                    'name' => CharacterBuild::SPINNINGBLADE,
                     'points' => 1,
                 ],
                 [
-                    'name' => BuildlinkParser::BLOODLETTER,
+                    'name' => CharacterBuild::BLOODLETTER,
                     'points' => 0,
                 ],
                 [
-                    'name' => BuildlinkParser::BLADESFORCUTTING,
+                    'name' => CharacterBuild::BLADESFORCUTTING,
                     'points' => 0,
                 ],
                 [
-                    'name' => BuildlinkParser::BLOODSEEKERS,
+                    'name' => CharacterBuild::BLOODSEEKERS,
                     'points' => 0,
                 ],
                 [
-                    'name' => BuildlinkParser::LIVINGBARRIER,
+                    'name' => CharacterBuild::LIVINGBARRIER,
                     'points' => 0,
                 ],
                 [
-                    'name' => BuildlinkParser::RUPTURE,
+                    'name' => CharacterBuild::RUPTURE,
                     'points' => 1,
                 ],
                 [
-                    'name' => BuildlinkParser::BLOODYCHALICE,
+                    'name' => CharacterBuild::BLOODYCHALICE,
                     'points' => 0,
                 ],
                 [
-                    'name' => BuildlinkParser::DRAIN,
+                    'name' => CharacterBuild::DRAIN,
                     'points' => 0,
                 ],
                 [
-                    'name' => BuildlinkParser::DANCEOFDEATH,
+                    'name' => CharacterBuild::DANCEOFDEATH,
                     'points' => 1,
                 ],
                 [
-                    'name' => BuildlinkParser::ENERGIZER,
+                    'name' => CharacterBuild::ENERGIZER,
                     'points' => 0,
                 ],
             ],
@@ -142,37 +143,37 @@ class BuildlinkParserTest extends TestCase
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-ss.html?build=45175643275436211000010001f7a48hd13;21;35;40";
 
         $expected = [
-            'class' => BuildlinkParser::SHARPSHOOTER,
-            'relic' => BuildlinkParser::ELECTRODE,
+            'class' => CharacterBuild::SHARPSHOOTER,
+            'relic' => CharacterBuild::ELECTRODE,
             'tree1' => [
                 'name' => 'precision',
                 'skills' => [
                     [
-                        'name' => 'tight_grouping',
+                        'name' => CharacterBuild::TIGHT_GROUPING,
                         'points' => 1,
                     ],
                     [
-                        'name' => 'onslaught',
+                        'name' => CharacterBuild::ONSLAUGHT,
                         'points' => 2,
                     ],
                     [
-                        'name' => 'targeted_strikes',
+                        'name' => CharacterBuild::TARGETED_STRIKES,
                         'points' => 3,
                     ],
                     [
-                        'name' => 'reload',
+                        'name' => CharacterBuild::RELOAD,
                         'points' => 4,
                     ],
                     [
-                        'name' => 'explosive_arrow',
+                        'name' => CharacterBuild::EXPLOSIVE_ARROW,
                         'points' => 5,
                     ],
                     [
-                        'name' => 'heart_seeker',
+                        'name' => CharacterBuild::HEART_SEEKER,
                         'points' => 6,
                     ],
                     [
-                        'name' => 'scatter_shot',
+                        'name' => CharacterBuild::SCATTER_SHOT,
                         'points' => 7,
                     ],
                 ],
@@ -181,74 +182,74 @@ class BuildlinkParserTest extends TestCase
                 'name' => 'adventurer',
                 'skills' => [
                     [
-                        'name' => 'scouts_bones',
+                        'name' => CharacterBuild::SCOUTS_BONES,
                         'points' => 7,
                     ],
                     [
-                        'name' => 'goblin_legion',
+                        'name' => CharacterBuild::GOBLIN_LEGION,
                         'points' => 6,
                     ],
                     [
-                        'name' => 'ghost_visage',
+                        'name' => CharacterBuild::GHOST_VISAGE,
                         'points' => 5,
                     ],
                     [
-                        'name' => 'rizzis_fate',
+                        'name' => CharacterBuild::RIZZIS_FATE,
                         'points' => 4,
                     ],
                     [
-                        'name' => 'sacrifice_to_goose',
+                        'name' => CharacterBuild::SACRIFICE_TO_GOOSE,
                         'points' => 3,
                     ],
                     [
-                        'name' => 'curse_of_pi_pi',
+                        'name' => CharacterBuild::CURSE_OF_PI_PI,
                         'points' => 2,
                     ],
                     [
-                        'name' => 'shasta',
+                        'name' => CharacterBuild::SHASTA,
                         'points' => 1,
                     ],
                 ],
             ],
             'relicskills' => [
                 [
-                    'name' => 'localizedstorm',
+                    'name' => CharacterBuild::LOCALIZEDSTORM,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'shockingdisplay',
+                    'name' => CharacterBuild::SHOCKINGDISPLAY,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'shockingforce',
+                    'name' => CharacterBuild::SHOCKINGFORCE,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'chaoticstrikes',
+                    'name' => CharacterBuild::CHAOTICSTRIKES,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'lightningbarrier',
+                    'name' => CharacterBuild::LIGHTNINGBARRIER,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'tinglingsensation',
+                    'name' => CharacterBuild::TINGLINGSENSATION,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'lightningstrike',
+                    'name' => CharacterBuild::LIGHTNINGSTRIKE,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'conjureelectrode',
+                    'name' => CharacterBuild::CONJUREELECTRODE,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'thousandvoltburst',
+                    'name' => CharacterBuild::THOUSANDVOLTBURST,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'energizer',
+                    'name' => CharacterBuild::ENERGIZER,
                     'points' => 1,
                 ],
             ],
@@ -268,113 +269,113 @@ class BuildlinkParserTest extends TestCase
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-railmaster.html?build=3412364757654321100002001138796ad1c;11;20;30";
 
         $expected = [
-            'class' => BuildlinkParser::RAILMASTER,
-            'relic' => BuildlinkParser::COLDHEART,
+            'class' => CharacterBuild::RAILMASTER,
+            'relic' => CharacterBuild::COLDHEART,
             'tree1' => [
-                'name' => 'conductor',
+                'name' => CharacterBuild::CONDUCTOR,
                 'skills' => [
                     [
-                        'name' => 'build_train',
+                        'name' => CharacterBuild::BUILD_TRAIN,
                         'points' => 1,
                     ],
                     [
-                        'name' => 'mortar_car',
+                        'name' => CharacterBuild::MORTAR_CAR,
                         'points' => 2,
                     ],
                     [
-                        'name' => 'shield_car',
+                        'name' => CharacterBuild::SHIELD_CAR,
                         'points' => 3,
                     ],
                     [
-                        'name' => 'shotgonne_car',
+                        'name' => CharacterBuild::SHOTGONNE_CAR,
                         'points' => 4,
                     ],
                     [
-                        'name' => 'ghost_train',
+                        'name' => CharacterBuild::GHOST_TRAIN,
                         'points' => 5,
                     ],
                     [
-                        'name' => 'shocking_rounds',
+                        'name' => CharacterBuild::SHOCKING_ROUNDS,
                         'points' => 6,
                     ],
                     [
-                        'name' => 'flamethrower_car',
+                        'name' => CharacterBuild::FLAMETHROWER_CAR,
                         'points' => 7,
                     ],
                 ],
             ],
             'tree2' => [
-                'name' => 'lineage',
+                'name' => CharacterBuild::LINEAGE,
                 'skills' => [
                     [
-                        'name' => 'pound',
+                        'name' => CharacterBuild::POUND,
                         'points' => 7,
                     ],
                     [
-                        'name' => 'blasting_charge',
+                        'name' => CharacterBuild::BLASTING_CHARGE,
                         'points' => 6,
                     ],
                     [
-                        'name' => 'hammer_spin',
+                        'name' => CharacterBuild::HAMMER_SPIN,
                         'points' => 5,
                     ],
                     [
-                        'name' => 'flying_picks',
+                        'name' => CharacterBuild::FLYING_PICKS,
                         'points' => 4,
                     ],
                     [
-                        'name' => 'lantern_flash',
+                        'name' => CharacterBuild::LANTERN_FLASH,
                         'points' => 3,
                     ],
                     [
-                        'name' => 'torque_swing',
+                        'name' => CharacterBuild::TORQUE_SWING,
                         'points' => 2,
                     ],
                     [
-                        'name' => 'spike_drive',
+                        'name' => CharacterBuild::SPIKE_DRIVE,
                         'points' => 1,
                     ],
                 ],
             ],
-            'relicskills' => [
+            CharacterBuild::RELICSKILLS => [
                 [
-                    'name' => 'jaggedice',
+                    'name' => CharacterBuild::JAGGEDICE,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'iceshield',
+                    'name' => CharacterBuild::ICESHIELD,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'frostblast',
+                    'name' => CharacterBuild::FROSTBLAST,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'frostskin',
+                    'name' => CharacterBuild::FROSTSKIN,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'icegolem',
+                    'name' => CharacterBuild::ICEGOLEM,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'largebores',
+                    'name' => CharacterBuild::LARGEBORES,
                     'points' => 2,
                 ],
                 [
-                    'name' => 'breakingpoint',
+                    'name' => CharacterBuild::BREAKINGPOINT,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'snowstorm',
+                    'name' => CharacterBuild::SNOWSTORM,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'coldfront',
+                    'name' => CharacterBuild::COLDFRONT,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'energizer',
+                    'name' => CharacterBuild::ENERGIZER,
                     'points' => 1,
                 ],
             ],
@@ -394,113 +395,113 @@ class BuildlinkParserTest extends TestCase
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=211234567765413210000101014mga08713;28;16;45";
 
         $expected = [
-            'class' => BuildlinkParser::FORGED,
-            'relic' => BuildlinkParser::BANE,
+            'class' => CharacterBuild::FORGED,
+            'relic' => CharacterBuild::BANE,
             'tree1' => [
-                'name' => 'barrage',
+                'name' => CharacterBuild::BARRAGE,
                 'skills' => [
                     [
-                        'name' => 'rapid_fire',
+                        'name' => CharacterBuild::RAPID_FIRE,
                         'points' => 1,
                     ],
                     [
-                        'name' => 'coal_launch',
+                        'name' => CharacterBuild::COAL_LAUNCH,
                         'points' => 2,
                     ],
                     [
-                        'name' => 'shotgonne_blast',
+                        'name' => CharacterBuild::SHOTGONNE_BLAST,
                         'points' => 3,
                     ],
                     [
-                        'name' => 'poison_dart',
+                        'name' => CharacterBuild::POISON_DART,
                         'points' => 4,
                     ],
                     [
-                        'name' => 'sonic_pulse_arm',
+                        'name' => CharacterBuild::SONIC_PULSE_ARM,
                         'points' => 5,
                     ],
                     [
-                        'name' => 'slug_shot',
+                        'name' => CharacterBuild::SLUG_SHOT,
                         'points' => 6,
                     ],
                     [
-                        'name' => 'furnance_blast',
+                        'name' => CharacterBuild::FURNANCE_BLAST,
                         'points' => 7,
                     ],
                 ],
             ],
             'tree2' => [
-                'name' => 'brawl',
+                'name' => CharacterBuild::BRAWL,
                 'skills' => [
                     [
-                        'name' => 'rapid_strike',
+                        'name' => CharacterBuild::RAPID_STRIKE,
                         'points' => 7,
                     ],
                     [
-                        'name' => 'vortex_bomb', // missing icon!
+                        'name' => CharacterBuild::VORTEX_BOMB,
                         'points' => 6,
                     ],
                     [
-                        'name' => 'ramming_robot',
+                        'name' => CharacterBuild::RAMMING_ROBOT,
                         'points' => 5,
                     ],
                     [
-                        'name' => 'servo_driven_uppercut',
+                        'name' => CharacterBuild::SERVO_DRIVEN_UPPERCUT,
                         'points' => 4,
                     ],
                     [
-                        'name' => 'fracking_strike',
+                        'name' => CharacterBuild::FRACKING_STRIKE,
                         'points' => 3,
                     ],
                     [
-                        'name' => 'power_projection',
+                        'name' => CharacterBuild::POWER_PROJECTION,
                         'points' => 2,
                     ],
                     [
-                        'name' => 'cyclone_mode',
+                        'name' => CharacterBuild::CYCLONE_MODE,
                         'points' => 1,
                     ],
                 ],
             ],
             'relicskills' => [
                 [
-                    'name' => 'eightleggeddallies',
+                    'name' => CharacterBuild::EIGHTLEGGEDDALLIES,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'spectralspider',
+                    'name' => CharacterBuild::SPECTRALSPIDER,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'poisonnova',
+                    'name' => CharacterBuild::POISONNOVA,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'spreadofdeath',
+                    'name' => CharacterBuild::SPREADOFDEATH,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'staffedup',
+                    'name' => CharacterBuild::STAFFEDUP,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'venomousmaw',
+                    'name' => CharacterBuild::VENOMOUSMAW,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'miasma',
+                    'name' => CharacterBuild::MIASMA,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'puppetmaster',
+                    'name' => CharacterBuild::PUPPETMASTER,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'arachnidassault',
+                    'name' => CharacterBuild::ARACHNIDASSAULT,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'energizer',
+                    'name' => CharacterBuild::ENERGIZER,
                     'points' => 1,
                 ],
             ],
@@ -520,113 +521,113 @@ class BuildlinkParserTest extends TestCase
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=221234567765413210000101014mga08713;28;16;45";
 
         $expected = [
-            'class' => BuildlinkParser::FORGED,
-            'relic' => BuildlinkParser::FLAMING_DESTROYER,
+            'class' => CharacterBuild::FORGED,
+            'relic' => CharacterBuild::FLAMING_DESTROYER,
             'tree1' => [
-                'name' => 'barrage',
+                'name' => CharacterBuild::BARRAGE,
                 'skills' => [
                     [
-                        'name' => 'rapid_fire',
+                        'name' => CharacterBuild::RAPID_FIRE,
                         'points' => 1,
                     ],
                     [
-                        'name' => 'coal_launch',
+                        'name' => CharacterBuild::COAL_LAUNCH,
                         'points' => 2,
                     ],
                     [
-                        'name' => 'shotgonne_blast',
+                        'name' => CharacterBuild::SHOTGONNE_BLAST,
                         'points' => 3,
                     ],
                     [
-                        'name' => 'poison_dart',
+                        'name' => CharacterBuild::POISON_DART,
                         'points' => 4,
                     ],
                     [
-                        'name' => 'sonic_pulse_arm',
+                        'name' => CharacterBuild::SONIC_PULSE_ARM,
                         'points' => 5,
                     ],
                     [
-                        'name' => 'slug_shot',
+                        'name' => CharacterBuild::SLUG_SHOT,
                         'points' => 6,
                     ],
                     [
-                        'name' => 'furnance_blast',
+                        'name' => CharacterBuild::FURNANCE_BLAST,
                         'points' => 7,
                     ],
                 ],
             ],
             'tree2' => [
-                'name' => 'brawl',
+                'name' => CharacterBuild::BRAWL,
                 'skills' => [
                     [
-                        'name' => 'rapid_strike',
+                        'name' => CharacterBuild::RAPID_STRIKE,
                         'points' => 7,
                     ],
                     [
-                        'name' => 'vortex_bomb', // missing icon!
+                        'name' => CharacterBuild::VORTEX_BOMB,
                         'points' => 6,
                     ],
                     [
-                        'name' => 'ramming_robot',
+                        'name' => CharacterBuild::RAMMING_ROBOT,
                         'points' => 5,
                     ],
                     [
-                        'name' => 'servo_driven_uppercut',
+                        'name' => CharacterBuild::SERVO_DRIVEN_UPPERCUT,
                         'points' => 4,
                     ],
                     [
-                        'name' => 'fracking_strike',
+                        'name' => CharacterBuild::FRACKING_STRIKE,
                         'points' => 3,
                     ],
                     [
-                        'name' => 'power_projection',
+                        'name' => CharacterBuild::POWER_PROJECTION,
                         'points' => 2,
                     ],
                     [
-                        'name' => 'cyclone_mode',
+                        'name' => CharacterBuild::CYCLONE_MODE,
                         'points' => 1,
                     ],
                 ],
             ],
             'relicskills' => [
                 [
-                    'name' => 'swordsmash',
+                    'name' => CharacterBuild::SWORDSMASH,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'ignitionsource',
+                    'name' => CharacterBuild::IGNITIONSOURCE,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'magmaburst',
+                    'name' => CharacterBuild::MAGMABURST,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'blazingpillar',
+                    'name' => CharacterBuild::BLAZINGPILLAR,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'giantswings',
+                    'name' => CharacterBuild::GIANTSWINGS,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'cloakofflames',
+                    'name' => CharacterBuild::CLOAKOFFLAMES,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'nimbleflames',
+                    'name' => CharacterBuild::NIMBLEFLAMES,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'firestorm',
+                    'name' => CharacterBuild::FIRESTORM,
                     'points' => 1,
                 ],
                 [
-                    'name' => 'summoningsmash',
+                    'name' => CharacterBuild::SUMMONINGSMASH,
                     'points' => 0,
                 ],
                 [
-                    'name' => 'energizer',
+                    'name' => CharacterBuild::ENERGIZER,
                     'points' => 1,
                 ],
             ],
