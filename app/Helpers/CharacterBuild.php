@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Exception;
 use SebastianBergmann\Diff\Chunk;
 
 class CharacterBuild
@@ -162,6 +163,7 @@ class CharacterBuild
         'relic' => '',
         'skilltabs' => [],
         'hotbar' => null,
+        'legendarium' => [],
     ];
 
     public function __construct(Hotbar $hotbar = null)
@@ -177,8 +179,8 @@ class CharacterBuild
     public function getClass(): string
     {
         return isset($this->data['class'])
-        ? $this->data['class']
-        : '';
+            ? $this->data['class']
+            : '';
     }
 
     public function setRelic(string $relic): void
@@ -189,8 +191,8 @@ class CharacterBuild
     public function getRelic(): string
     {
         return isset($this->data['relic'])
-        ? $this->data['relic']
-        : '';
+            ? $this->data['relic']
+            : '';
     }
 
     public function addSkillTab(CharacterSkillTab $skillTab): void
@@ -200,8 +202,8 @@ class CharacterBuild
 
     public function getSkillTab(string $name): CharacterSkillTab
     {
-        foreach($this->data['skilltabs'] as $skillTab) {
-            if($skillTab->getDisplayName() === $name) {
+        foreach ($this->data['skilltabs'] as $skillTab) {
+            if ($skillTab->getDisplayName() === $name) {
                 return $skillTab;
             }
         }
@@ -212,4 +214,28 @@ class CharacterBuild
         return $this->data['hotbar'];
     }
 
+    public function addLegendarium(Legendarium $legendarium, int $pos): void
+    {
+        if (count($this->data['legendarium']) >= 3) {
+            throw new Exception("Can't add more than 3 legendariums.");
+        }
+
+        $this->checkValidLegendariumRange($pos);
+
+        $this->data['legendarium'][$pos] = $legendarium;
+    }
+
+    public function getLegendarium(int $pos): Legendarium
+    {
+        $this->checkValidLegendariumRange($pos);
+
+        return $this->data['legendarium'][$pos];
+    }
+
+    protected function checkValidLegendariumRange(int $pos): void
+    {
+        if ($pos < 1 || $pos > 3) {
+            throw new Exception("Only 1 through 3 are valid positions.");
+        }
+    }
 }

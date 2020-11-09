@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 use App\Helpers\CharacterBuild;
+use Exception;
 
 class CharacterBuildTest extends TestCase
 {
@@ -56,9 +57,46 @@ class CharacterBuildTest extends TestCase
         $this->assertEquals('Light', $this->cb->getHotbar()->getPosition(1)->getDisplayName());
     }
 
+    /** @test */
+    public function it_has_legendariums()
+    {
+        $legendarium = $this->createMock(\App\Helpers\Legendarium::class);
+        $this->cb->addLegendarium($legendarium, 1);
 
-    // Left to implement:
-    // Legendariums
+        $this->assertSame($legendarium, $this->cb->getLegendarium(1));
+    }
+
+    /** @test */
+    public function it_cannot_add_more_than_three_legendariums()
+    {
+        $this->expectException(Exception::class);
+
+        $legendarium = $this->createMock(\App\Helpers\Legendarium::class);
+        $this->cb->addLegendarium($legendarium, 1);
+        $this->cb->addLegendarium($legendarium, 2);
+        $this->cb->addLegendarium($legendarium, 3);
+        $this->cb->addLegendarium($legendarium, 4);
+    }
+
+    /** @test */
+    public function it_throws_exception_if_legendarium_pos_is_below_one()
+    {
+        $this->expectException(Exception::class);
+
+        $legendarium = $this->createMock(\App\Helpers\Legendarium::class);
+
+        $this->cb->addLegendarium($legendarium, 0);
+    }
+
+    /** @test */
+    public function it_throws_exception_if_legendarium_pos_is_above_three()
+    {
+        $this->expectException(Exception::class);
+
+        $legendarium = $this->createMock(\App\Helpers\Legendarium::class);
+
+        $this->cb->addLegendarium($legendarium, 4);
+    }
 
     protected function getSkillTab(string $name)
     {
@@ -93,7 +131,7 @@ class CharacterBuildTest extends TestCase
         $skill->method('getSkillType')
             ->willReturn('Active');
         $skill->method('getPerLevelBonusTexts')
-            ->willReturn('Bonus Text per level');
+            ->willReturn(['Bonus Text per level']);
         $skill->method('getPerLevelDescriptions')
             ->willReturn($this->getPerLevelDescription());
 
