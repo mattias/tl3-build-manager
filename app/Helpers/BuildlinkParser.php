@@ -25,11 +25,15 @@ class BuildlinkParser
     protected $buildStart;
     protected $class;
 
-    public function parse(string $buildlink): array
+    public function parse(string $buildlink): CharacterBuild
     {
         $this->buildlink = $buildlink;
         $this->buildStart = strpos($buildlink, '?');
         $this->buildStart += 7; // Moves to the beginning of the data
+
+        $characterBuild = new CharacterBuild;
+        $characterBuild->setClass($this->class = $this->getClass());
+        $characterBuild->setRelic($this->getRelic());
 
         $parsed = [];
         $parsed['class'] = $this->class = $this->getClass();
@@ -40,7 +44,7 @@ class BuildlinkParser
         $parsed['hotbar'] = $this->getHotbar();
         $parsed['legendarium'] = $this->getLegendarium();
 
-        return $parsed;
+        return $characterBuild;
     }
 
     private function getClass(): string

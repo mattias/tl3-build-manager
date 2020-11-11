@@ -163,12 +163,22 @@ class CharacterBuild
         'relic' => '',
         'skilltabs' => [],
         'hotbar' => null,
-        'legendarium' => [],
+        'legendariums' => [],
     ];
 
-    public function __construct(Hotbar $hotbar = null)
+    public function __construct(
+        string $class = '',
+        string $relic = '',
+        array $skilltabs = [],
+        Hotbar $hotbar = null,
+        array $legendariums = []
+    )
     {
-        $this->data['hotbar'] = $hotbar ? $hotbar : new Hotbar;
+        $this->data['class'] = $class;
+        $this->data['relic'] = $relic;
+        $this->data['skilltabs'] = $skilltabs;
+        $this->data['hotbar'] = $hotbar ?? new Hotbar;
+        $this->data['legendariums'] = $legendariums;
     }
 
     public function setClass(string $class): void
@@ -216,20 +226,20 @@ class CharacterBuild
 
     public function addLegendarium(Legendarium $legendarium, int $pos): void
     {
-        if (count($this->data['legendarium']) >= 3) {
+        if (count($this->data['legendariums']) >= 3) {
             throw new Exception("Can't add more than 3 legendariums.");
         }
 
         $this->checkValidLegendariumRange($pos);
 
-        $this->data['legendarium'][$pos] = $legendarium;
+        $this->data['legendariums'][$pos] = $legendarium;
     }
 
     public function getLegendarium(int $pos): Legendarium
     {
         $this->checkValidLegendariumRange($pos);
 
-        return $this->data['legendarium'][$pos];
+        return $this->data['legendariums'][$pos];
     }
 
     protected function checkValidLegendariumRange(int $pos): void

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Helpers\BuildlinkParser;
 use App\Helpers\CharacterBuild;
+use App\Helpers\Hotbar;
 
 class BuildlinkParserTest extends TestCase
 {
@@ -16,7 +17,20 @@ class BuildlinkParserTest extends TestCase
         $buildlinkParser = new BuildlinkParser;
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html?build=13156723471642531000010010cfhap8614;1;28;33";
 
-        $expected = [
+        $class = 'Dusk Mage';
+        $relic = 'Blood Drinker';
+        $skilltabs = [];
+        $hotbar = new Hotbar;
+        $legendariums = [];
+        $expected = new CharacterBuild(
+            $class,
+            $relic,
+            $skilltabs,
+            $hotbar,
+            $legendariums
+        );
+
+        /*$expected = [
             'class' => CharacterBuild::DUSK_MAGE,
             'relic' => CharacterBuild::BLOOD_DRINKER,
             'tree1' => [
@@ -129,7 +143,7 @@ class BuildlinkParserTest extends TestCase
             ],
             'hotbar' => [12, 15, 17, 10, 25, 8, 6, 1, 4],
             'legendarium' => [1, 28, 33],
-        ];
+        ];*/
 
         $actual = $buildlinkParser->parse($buildlink);
 
@@ -142,7 +156,20 @@ class BuildlinkParserTest extends TestCase
         $buildlinkParser = new BuildlinkParser;
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-ss.html?build=45175643275436211000010001f7a48hd13;21;35;40";
 
-        $expected = [
+        $class = 'Sharpshooter';
+        $relic = 'Electrode';
+        $skilltabs = [];
+        $hotbar = new Hotbar;
+        $legendariums = [];
+        $expected = new CharacterBuild(
+            $class,
+            $relic,
+            $skilltabs,
+            $hotbar,
+            $legendariums
+        );
+
+        /*$expected = [
             'class' => CharacterBuild::SHARPSHOOTER,
             'relic' => CharacterBuild::ELECTRODE,
             'tree1' => [
@@ -255,7 +282,7 @@ class BuildlinkParserTest extends TestCase
             ],
             'hotbar' => [15, 7, 10, 4, 8, 17, 13, 1, 3],
             'legendarium' => [21, 35, 40],
-        ];
+        ];*/
 
         $actual = $buildlinkParser->parse($buildlink);
 
@@ -268,7 +295,20 @@ class BuildlinkParserTest extends TestCase
         $buildlinkParser = new BuildlinkParser;
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-railmaster.html?build=3412364757654321100002001138796ad1c;11;20;30";
 
-        $expected = [
+        $class = 'Railmaster';
+        $relic = 'Coldheart';
+        $skilltabs = [];
+        $hotbar = new Hotbar;
+        $legendariums = [];
+        $expected = new CharacterBuild(
+            $class,
+            $relic,
+            $skilltabs,
+            $hotbar,
+            $legendariums
+        );
+
+        /*$expected = [
             'class' => CharacterBuild::RAILMASTER,
             'relic' => CharacterBuild::COLDHEART,
             'tree1' => [
@@ -381,7 +421,7 @@ class BuildlinkParserTest extends TestCase
             ],
             'hotbar' => [3, 8, 7, 9, 6, 10, 13, 1, 12],
             'legendarium' => [11, 20, 30],
-        ];
+        ];*/
 
         $actual = $buildlinkParser->parse($buildlink);
 
@@ -394,7 +434,20 @@ class BuildlinkParserTest extends TestCase
         $buildlinkParser = new BuildlinkParser;
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=211234567765413210000101014mga08713;28;16;45";
 
-        $expected = [
+        $class = 'Forged';
+        $relic = 'Bane';
+        $skilltabs = [];
+        $hotbar = new Hotbar;
+        $legendariums = [];
+        $expected = new CharacterBuild(
+            $class,
+            $relic,
+            $skilltabs,
+            $hotbar,
+            $legendariums
+        );
+
+        /*$expected = [
             'class' => CharacterBuild::FORGED,
             'relic' => CharacterBuild::BANE,
             'tree1' => [
@@ -507,7 +560,7 @@ class BuildlinkParserTest extends TestCase
             ],
             'hotbar' => [4, 22, 16, 10, 0, 8, 7, 1, 3],
             'legendarium' => [28, 16, 45],
-        ];
+        ];*/
 
         $actual = $buildlinkParser->parse($buildlink);
 
@@ -520,7 +573,20 @@ class BuildlinkParserTest extends TestCase
         $buildlinkParser = new BuildlinkParser;
         $buildlink = "https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=221234567765413210000101014mga08713;28;16;45";
 
-        $expected = [
+        $class = 'Forged';
+        $relic = 'Flaming Destroyer';
+        $skilltabs = [];
+        $hotbar = new Hotbar;
+        $legendariums = [];
+        $expected = new CharacterBuild(
+            $class,
+            $relic,
+            $skilltabs,
+            $hotbar,
+            $legendariums
+        );
+
+        /*$expected = [
             'class' => CharacterBuild::FORGED,
             'relic' => CharacterBuild::FLAMING_DESTROYER,
             'tree1' => [
@@ -633,10 +699,11 @@ class BuildlinkParserTest extends TestCase
             ],
             'hotbar' => [4, 22, 16, 10, 0, 8, 7, 1, 3],
             'legendarium' => [28, 16, 45],
-        ];
+        ];*/
 
         $actual = $buildlinkParser->parse($buildlink);
 
+        $this->assertInstanceOf(CharacterBuild::class, $actual);
         $this->assertEquals($expected, $actual);
     }
 }
