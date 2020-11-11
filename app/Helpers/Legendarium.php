@@ -7,7 +7,10 @@ class Legendarium
     protected $displayName;
     protected $description;
 
-    public function __construct($displayName = '', $description = '')
+    public function __construct(
+        $displayName = '',
+        $description = ''
+    )
     {
         $this->displayName = $displayName;
         $this->description = $description;
@@ -22,7 +25,6 @@ class Legendarium
     {
         return $this->displayName;
     }
-
 
     public function setDescription(string $description): void
     {
