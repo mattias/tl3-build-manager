@@ -19,6 +19,7 @@ class CharacterSkillTest extends TestCase
         $perLevelBonusTexts = [];
         $perLevelDescriptions = [];
         $tierBonusDescriptions = [];
+        $level = 5;
 
         $characterSkill = new \App\Helpers\CharacterSkill(
             $displayName,
@@ -28,7 +29,8 @@ class CharacterSkillTest extends TestCase
             $skillType,
             $perLevelBonusTexts,
             $perLevelDescriptions,
-            $tierBonusDescriptions
+            $tierBonusDescriptions,
+            $level
         );
 
         $this->assertInstanceOf(\App\Helpers\CharacterSkill::class, $characterSkill);
@@ -40,5 +42,36 @@ class CharacterSkillTest extends TestCase
         $this->assertEquals($perLevelBonusTexts, $characterSkill->getPerLevelBonusTexts());
         $this->assertEquals($perLevelDescriptions, $characterSkill->getPerLevelDescriptions());
         $this->assertEquals($tierBonusDescriptions, $characterSkill->getTierBonusDescriptions());
+        $this->assertEquals($level, $characterSkill->getLevel());
+    }
+
+    /** @test */
+    public function it_can_set_level()
+    {
+        $displayName = 'Light';
+        $requiredLevelInSkillTab = 5;
+        $skillTabRow = 2;
+        $skillTabColumn = 2;
+        $skillType = 'Active';
+        $perLevelBonusTexts = [];
+        $perLevelDescriptions = [];
+        $tierBonusDescriptions = [];
+        $level = 5;
+
+        $characterSkill = new \App\Helpers\CharacterSkill(
+            $displayName,
+            $requiredLevelInSkillTab,
+            $skillTabRow,
+            $skillTabColumn,
+            $skillType,
+            $perLevelBonusTexts,
+            $perLevelDescriptions,
+            $tierBonusDescriptions,
+            $level
+        );
+
+        $characterSkill->setLevel(6);
+
+        $this->assertEquals(6, $characterSkill->getLevel());
     }
 }

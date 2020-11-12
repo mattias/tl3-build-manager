@@ -52,7 +52,7 @@ class CharacterBuildTest extends TestCase
         $hotbar->method('getPosition')
         ->willReturn($skill);
 
-        $this->cb = new CharacterBuild($hotbar);
+        $this->cb->setHotbar($hotbar);
 
         $this->assertEquals('Light', $this->cb->getHotbar()->getPosition(1)->getDisplayName());
     }
@@ -133,38 +133,9 @@ class CharacterBuildTest extends TestCase
         $skill->method('getPerLevelBonusTexts')
             ->willReturn(['Bonus Text per level']);
         $skill->method('getPerLevelDescriptions')
-            ->willReturn($this->getPerLevelDescription());
+            ->willReturn(['array of level descriptions']);
 
 
         return $skill;
-    }
-
-    protected function getPerLevelDescription()
-    {
-        return [
-            '1' => $this->getLevelDescription(1),
-            '3' => $this->getLevelDescription(2),
-            '4' => $this->getLevelDescription(3),
-            '2' => $this->getLevelDescription(4),
-            '5' => $this->getLevelDescription(5),
-            '6' => $this->getLevelDescription(6),
-            '7' => $this->getLevelDescription(7),
-            '8' => $this->getLevelDescription(8),
-            '9' => $this->getLevelDescription(9),
-            '10' => $this->getLevelDescription(10),
-        ];
-    }
-
-    protected function getLevelDescription(int $level)
-    {
-        $levelDescription = $this->createMock(\App\Helpers\CharacterSkillLevelDescription::class);
-        $levelDescription->method('getDescription')
-            ->willReturn('A long description of the skill for the current level (points)');
-        $levelDescription->method('getCooldownText')
-            ->willReturn('Cooldown: 16 Sec');
-        $levelDescription->method('getEnergyCostText')
-            ->willReturn('5 Mana');
-        $levelDescription->method('getBonusAmounts')
-            ->willReturn(sprintf('+%d%%', ($level-1)*5));
     }
 }

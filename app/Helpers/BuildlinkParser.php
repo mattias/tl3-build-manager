@@ -21,35 +21,88 @@ class BuildlinkParser
         CharacterBuild::SHARPSHOOTER => [10, 14, 11, 12, 13, 15, 16],
     ];
 
+    const CLASS_TO_TREES = [
+        CharacterBuild::DUSK_MAGE => [CharacterBuild::LIGHT, CharacterBuild::DARK],
+        CharacterBuild::FORGED => [CharacterBuild::BARRAGE, CharacterBuild::BRAWL],
+        CharacterBuild::RAILMASTER => [CharacterBuild::CONDUCTOR, CharacterBuild::LINEAGE],
+        CharacterBuild::SHARPSHOOTER => [CharacterBuild::PRECISION, CharacterBuild::ADVENTURER],
+    ];
+
     protected $buildlink;
     protected $buildStart;
     protected $class;
+    protected $characterBuild;
 
     public function parse(string $buildlink): CharacterBuild
     {
         $this->buildlink = $buildlink;
         $this->buildStart = strpos($buildlink, '?');
         $this->buildStart += 7; // Moves to the beginning of the data
+        $this->characterBuild = new CharacterBuild;
 
-        $characterBuild = new CharacterBuild;
-        $characterBuild->setClass($this->class = $this->getClass());
-        $characterBuild->setRelic($this->getRelic());
+        $this->parseClass();
+        $this->parseRelic();
+        $this->parseTree1();
+        $this->parseTree2();
+        $this->parseRelicTree();
+        $this->parseHotbar();
+        $this->parseLegendariums();
 
-        $parsed = [];
-        $parsed['class'] = $this->class = $this->getClass();
-        $parsed['relic'] = $this->getRelic();
-        $parsed['tree1'] = $this->getTree1();
-        $parsed['tree2'] = $this->getTree2();
-        $parsed['relicskills'] = $this->getRelicskills();
-        $parsed['hotbar'] = $this->getHotbar();
-        $parsed['legendarium'] = $this->getLegendarium();
+        return $this->characterBuild;
+    }
 
-        return $characterBuild;
+    private function parseClass(): void
+    {
+        $this->characterBuild->setClass($this->getClass());
+    }
+
+    private function parseRelic(): void
+    {
+        $this->characterBuild->setRelic($this->getRelic());
+    }
+
+    private function parseTree1(): void
+    {
+        $tree1Levels = $this->getTree1();
+        $tree1 = new CharacterSkillTab(self::CLASS_TO_TREES[$this->class][0], $tree1Levels);
+        $this->characterBuild->addSkillTab($tree1);
+    }
+
+    private function parseTree2(): void
+    {
+        $tree2Levels = $this->getTree2();
+        $tree2 = new CharacterSkillTab(self::CLASS_TO_TREES[$this->class][1], $tree2Levels);
+        $this->characterBuild->addSkillTab($tree2);
+    }
+
+    private function parseRelicTree(): void
+    {
+        $relicLevels = $this->getRelicskills();
+        $relic = new CharacterSkillTab($this->relic, $relicLevels);
+        $this->characterBuild->addSkillTab($relic);
+    }
+
+    private function parseHotbar(): void
+    {
+        $hotbarold = $this->getHotbar();
+        $hotbar = new Hotbar;
+        $this->characterBuild->setHotbar($hotbar);
+    }
+
+    private function parseLegendariums(): void
+    {
+        $legendariumsold = $this->getLegendariums();
+        $legendarium1 = new Legendarium;
+        $this->characterBuild->addLegendarium($legendarium1, 1);
+        $legendarium2 = new Legendarium;
+        $this->characterBuild->addLegendarium($legendarium2, 2);
+        $legendarium3 = new Legendarium;
+        $this->characterBuild->addLegendarium($legendarium3, 3);
     }
 
     private function getClass(): string
     {
-        return $this->getClassFromNumber(
+        return $this->class = $this->getClassFromNumber(
             (int) $this->getDataFromPos(
                 $this->getPosition(1)
             )
@@ -68,7 +121,7 @@ class BuildlinkParser
 
     private function getRelic(): string
     {
-        return $this->getRelicFromNumber(
+        return $this->relic = $this->getRelicFromNumber(
             (int) $this->getDataFromPos(
                 $this->getPosition(2)
             )
@@ -134,7 +187,7 @@ class BuildlinkParser
         return $tree;
     }
 
-    private function getLegendarium(): array
+    private function getLegendariums(): array
     {
         $legendarium = explode(';', substr($this->buildlink, $this->getPosition(37)['start']));
 

@@ -12,16 +12,18 @@ class CharacterSkill
     protected $perLevelBonusTexts;
     protected $perLevelDescriptions;
     protected $tierBonusDescriptions;
+    protected $level;
 
     public function __construct(
-        $displayName = '',
-        $requiredLevelInSkillTab = 1,
-        $skillTabRow = 1,
-        $skillTabColumn = 1,
-        $skillType = '',
-        $perLevelBonusTexts = [],
-        $perLevelDescriptions = [],
-        $tierBonusDescriptions = []
+        string $displayName = '',
+        int $requiredLevelInSkillTab = 1,
+        int $skillTabRow = 1,
+        int $skillTabColumn = 1,
+        string $skillType = '',
+        array $perLevelBonusTexts = [],
+        array $perLevelDescriptions = [],
+        array $tierBonusDescriptions = [],
+        int $level = 1
     ) {
         $this->displayName = $displayName;
         $this->requiredLevelInSkillTab = $requiredLevelInSkillTab;
@@ -31,6 +33,7 @@ class CharacterSkill
         $this->perLevelBonusTexts = $perLevelBonusTexts;
         $this->perLevelDescriptions = $perLevelDescriptions;
         $this->tierBonusDescriptions = $tierBonusDescriptions;
+        $this->level = $level;
     }
 
     public function setDisplayName(string $displayName): void
@@ -83,9 +86,9 @@ class CharacterSkill
         return $this->skillType;
     }
 
-    public function setPerLevelBonusTexts(string $perLevelBonusTexts, int $pos = 0): void
+    public function setPerLevelBonusTexts(array $perLevelBonusTexts): void
     {
-        $this->perLevelBonusTexts[$pos] = $perLevelBonusTexts;
+        $this->perLevelBonusTexts = $perLevelBonusTexts;
     }
 
     public function getPerLevelBonusTexts(): array
@@ -93,9 +96,9 @@ class CharacterSkill
         return $this->perLevelBonusTexts;
     }
 
-    public function setPerLevelDescriptions(CharacterSkillLevelDescription $perLevelDescription, int $pos = 1): void
+    public function setPerLevelDescriptions(array $perLevelDescriptions): void
     {
-        $this->perLevelDescriptions[$pos] = $perLevelDescription;
+        $this->perLevelDescriptions = $perLevelDescriptions;
     }
 
     public function getPerLevelDescriptions(): array
@@ -103,13 +106,23 @@ class CharacterSkill
         return $this->perLevelDescriptions;
     }
 
-    public function setTierBonusDescriptions(string $tierBonusDescription, int $pos = 3): void
+    public function setTierBonusDescriptions(array $tierBonusDescriptions): void
     {
-        $this->tierBonusDescriptions[$pos] = $tierBonusDescription;
+        $this->tierBonusDescriptions = $tierBonusDescriptions;
     }
 
     public function getTierBonusDescriptions(): array
     {
         return $this->tierBonusDescriptions;
+    }
+
+    public function setLevel(int $level): void
+    {
+        $this->level = $level;
+    }
+
+    public function getLevel(): int
+    {
+        return $this->level;
     }
 }

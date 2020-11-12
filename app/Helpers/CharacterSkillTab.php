@@ -2,33 +2,46 @@
 
 namespace App\Helpers;
 
+use Exception;
+use Illuminate\Support\Facades\Storage;
+
 class CharacterSkillTab
 {
     protected $displayName;
-    protected $skills;
+    protected $skills = [];
 
-    public function __construct(
-        $displayName = '',
-        $skills = []
-    )
+    public function __construct(string $displayName, array $levels)
     {
         $this->displayName = $displayName;
-        $this->skills = $skills;
-    }
+        $skills = json_decode(Storage::disk('local')->get('skills.json'), true);
+        $levelIndex = 0;
+        foreach ($skills['skillTabs'] as $skillTab) {
+            if ($displayName === $skillTab['displayName']) {
+                foreach($skillTab['skills'] as $skill) {
+                    $this->skills[] = new CharacterSkill(
+                        $skill['displayName'],
+                        $skill['requiredLevelInSkillTab'],
+                        $skill['skillTabRow'],
+                        $skill['skillTabColumn'],
+                        $skill['skillType'],
+                        $skill['perLevelBonusTexts'],
+                        $skill['perLevelDescriptions'],
+                        $skill['tierBonusDescriptions'],
+                        $levels[$levelIndex++]
+                    );
+                }
+                break;
+            }
+        }
 
-    public function setDisplayName(string $displayName): void
-    {
-        $this->displayName = $displayName;
+        if(empty($this->skills)) {
+            throw new Exception("No skilltab found with the name of " . $displayName);
+        }
     }
 
     public function getDisplayName()
     {
         return $this->displayName;
-    }
-
-    public function setSkills(array $skills): void
-    {
-        $this->skills = $skills;
     }
 
     public function getSkills()

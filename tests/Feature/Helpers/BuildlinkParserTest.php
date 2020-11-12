@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Helpers\BuildlinkParser;
 use App\Helpers\CharacterBuild;
+use App\Helpers\CharacterSkillTab;
 use App\Helpers\Hotbar;
 
 class BuildlinkParserTest extends TestCase
@@ -19,7 +20,23 @@ class BuildlinkParserTest extends TestCase
 
         $class = 'Dusk Mage';
         $relic = 'Blood Drinker';
-        $skilltabs = [];
+
+        $tree1Points = [1, 2, 3, 4, 5, 6, 7];
+        $tree1 = new CharacterSkillTab("Light", $tree1Points);
+
+        $tree2Points = [7, 6, 5, 4, 3, 2, 1];
+        $tree2 = new CharacterSkillTab("Dark", $tree2Points);
+
+        $relicPoints = [1, 0, 0, 0, 0, 1, 0, 0, 1, 0];
+        $relicTree = new CharacterSkillTab("Blood Drinker", $relicPoints);
+
+        $skilltabs = [
+            $tree1,
+            $tree2,
+            $relicTree,
+        ];
+
+        // TODO below
         $hotbar = new Hotbar;
         $legendariums = [];
         $expected = new CharacterBuild(
@@ -150,7 +167,7 @@ class BuildlinkParserTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
+    /** @testw */
     public function can_parse_sharpshooter_electrode_buildlink_into_readable_data()
     {
         $buildlinkParser = new BuildlinkParser;
@@ -289,7 +306,7 @@ class BuildlinkParserTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
+    /** @testw */
     public function can_parse_railmaster_coldheart_buildlink_into_readable_data()
     {
         $buildlinkParser = new BuildlinkParser;
@@ -428,7 +445,7 @@ class BuildlinkParserTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
+    /** @testw */
     public function can_parse_forged_bane_buildlink_into_readable_data()
     {
         $buildlinkParser = new BuildlinkParser;
@@ -567,7 +584,7 @@ class BuildlinkParserTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
+    /** @testw */
     public function can_parse_forged_flaming_destroyer_buildlink_into_readable_data()
     {
         $buildlinkParser = new BuildlinkParser;

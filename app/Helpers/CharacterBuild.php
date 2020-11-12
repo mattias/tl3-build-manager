@@ -24,7 +24,7 @@ class CharacterBuild
     const ABSOLVER = 'absolver';
 
     // DM Dark skills
-    const DARK = 'dark';
+    const DARK = 'Dark';
     const UNHOLY_BOLT = 'unholy_bolt';
     const DARK_SPEARS = 'dark_spears';
     const SHADOW_STEP = 'shadow_step';
@@ -34,7 +34,7 @@ class CharacterBuild
     const ENTROPY = 'entropy';
 
     // SS Precision skills
-    const PRECISION = 'precision';
+    const PRECISION = 'Precision';
     const TIGHT_GROUPING = 'tight_grouping';
     const ONSLAUGHT = 'onslaught';
     const TARGETED_STRIKES = 'targeted_strikes';
@@ -44,7 +44,7 @@ class CharacterBuild
     const SCATTER_SHOT = 'scatter_shot';
 
     // SS Adventurer skills
-    const ADVENTURER = 'adventurer';
+    const ADVENTURER = 'Adventurer';
     const SCOUTS_BONES = 'scouts_bones';
     const GOBLIN_LEGION = 'goblin_legion';
     const GHOST_VISAGE = 'ghost_visage';
@@ -54,7 +54,7 @@ class CharacterBuild
     const SHASTA = 'shasta';
 
     // Railmaster Conductor skills
-    const CONDUCTOR = 'conductor';
+    const CONDUCTOR = 'Conductor';
     const BUILD_TRAIN = 'build_train';
     const MORTAR_CAR = 'mortar_car';
     const SHIELD_CAR = 'shield_car';
@@ -64,7 +64,7 @@ class CharacterBuild
     const FLAMETHROWER_CAR = 'flamethrower_car';
 
     // Railmaster Lineage skills
-    const LINEAGE = 'lineage';
+    const LINEAGE = 'Lineage';
     const POUND = 'pound';
     const BLASTING_CHARGE = 'blasting_charge';
     const HAMMER_SPIN = 'hammer_spin';
@@ -74,7 +74,7 @@ class CharacterBuild
     const SPIKE_DRIVE = 'spike_drive';
 
     // Forged Barrage skills
-    const BARRAGE = 'barrage';
+    const BARRAGE = 'Barrage';
     const RAPID_FIRE = 'rapid_fire';
     const COAL_LAUNCH = 'coal_launch';
     const SHOTGONNE_BLAST = 'shotgonne_blast';
@@ -84,7 +84,7 @@ class CharacterBuild
     const FURNANCE_BLAST = 'furnance_blast';
 
     // Forged Brawl skills
-    const BRAWL = 'brawl';
+    const BRAWL = 'Brawl';
     const RAPID_STRIKE = 'rapid_strike';
     const VORTEX_BOMB = 'vortex_bomb';
     const RAMMING_ROBOT = 'ramming_robot';
@@ -94,11 +94,11 @@ class CharacterBuild
     const CYCLONE_MODE = 'cyclone_mode';
 
     // Relics
-    const BANE = 'bane';
-    const FLAMING_DESTROYER = 'flamingdestroyer';
-    const BLOOD_DRINKER = 'blooddrinker';
-    const COLDHEART = 'coldheart';
-    const ELECTRODE = 'electrode';
+    const BANE = 'Bane';
+    const FLAMING_DESTROYER = 'Flaming Destroyer';
+    const BLOOD_DRINKER = 'Blood Drinker';
+    const COLDHEART = 'Coldheart';
+    const ELECTRODE = 'Electrode';
 
     // Common skill
     const ENERGIZER = 'energizer';
@@ -217,6 +217,11 @@ class CharacterBuild
                 return $skillTab;
             }
         }
+    }
+
+    public function setHotbar(Hotbar $hotbar): void
+    {
+        $this->data['hotbar'] = $hotbar;
     }
 
     public function getHotbar(): Hotbar
