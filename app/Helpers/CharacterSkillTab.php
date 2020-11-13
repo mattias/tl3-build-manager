@@ -14,11 +14,13 @@ class CharacterSkillTab
     {
         $this->displayName = $displayName;
         $skills = json_decode(Storage::disk('local')->get('skills.json'), true);
-        $levelIndex = 0;
+
         foreach ($skills['skillTabs'] as $skillTab) {
             if ($displayName === $skillTab['displayName']) {
+                $sort = constant('\App\Helpers\CharacterBuild::' . str_replace(' ', '_', strtoupper($displayName)) . '_SORT');
                 foreach($skillTab['skills'] as $skill) {
-                    $this->skills[] = new CharacterSkill(
+                    $key = array_search($skill['displayName'], $sort);
+                    $this->skills[$key] = new CharacterSkill(
                         $skill['displayName'],
                         $skill['requiredLevelInSkillTab'],
                         $skill['skillTabRow'],
@@ -27,9 +29,10 @@ class CharacterSkillTab
                         $skill['perLevelBonusTexts'],
                         $skill['perLevelDescriptions'],
                         $skill['tierBonusDescriptions'],
-                        $levels[$levelIndex++]
+                        $levels[$key]
                     );
                 }
+                ksort($this->skills);
                 break;
             }
         }

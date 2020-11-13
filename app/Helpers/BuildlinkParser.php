@@ -84,8 +84,9 @@ class BuildlinkParser
 
     private function parseHotbar(): void
     {
-        $hotbarold = $this->getHotbar();
-        $hotbar = new Hotbar;
+        $hotbarSkills = $this->getHotbar();
+        dd($hotbarSkills);
+        $hotbar = new Hotbar($hotbarSkills, $this->characterBuild->getSkillTabs());
         $this->characterBuild->setHotbar($hotbar);
     }
 
@@ -166,9 +167,8 @@ class BuildlinkParser
     private function getRelicskills(): array
     {
         $tree = [];
-        $positions = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26];
 
-        foreach ($positions as $pos) {
+        foreach (range(17, 26) as $pos) {
             $tree[] = $this->chardec($this->getDataFromPos($this->getPosition($pos)));
         }
 
@@ -178,9 +178,8 @@ class BuildlinkParser
     private function getHotbar(): array
     {
         $tree = [];
-        $positions = [27, 28, 29, 30, 31, 32, 33, 34, 35];
 
-        foreach ($positions as $pos) {
+        foreach (range(27, 35) as $pos) {
             $tree[] = $this->chardec($this->getDataFromPos($this->getPosition($pos)));
         }
 

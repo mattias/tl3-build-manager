@@ -36,8 +36,10 @@ class BuildlinkParserTest extends TestCase
             $relicTree,
         ];
 
+        $hotbar = new Hotbar($buildlink, $skilltabs);
+
+        dd($hotbar);
         // TODO below
-        $hotbar = new Hotbar;
         $legendariums = [];
         $expected = new CharacterBuild(
             $class,

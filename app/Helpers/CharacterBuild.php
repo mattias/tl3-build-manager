@@ -17,21 +17,27 @@ class CharacterBuild
     const LIGHT = 'Light';
     const HOLY_BOLT = 'Holy Bolt';
     const RADIANT_BLAST = 'Radiant Blast';
-    const CONCECRATION = 'Concecration';
+    const CONSECRATION = 'Consecration';
     const LIGHT_SPEAR = 'Light Spear';
     const HOLY_FURY = 'Holy Fury';
-    const LUMONOUS_RUN = 'lumonous_run';
-    const ABSOLVER = 'absolver';
+    const LUMINOUS_RUN = 'Luminous Run';
+    const ABSOLVER = 'Absolver';
+    const LIGHT_SORT = [
+        self::HOLY_BOLT, self::RADIANT_BLAST, self::CONSECRATION, self::LIGHT_SPEAR, self::HOLY_FURY, self::LUMINOUS_RUN, self::ABSOLVER
+    ];
 
     // DM Dark skills
     const DARK = 'Dark';
-    const UNHOLY_BOLT = 'unholy_bolt';
-    const DARK_SPEARS = 'dark_spears';
-    const SHADOW_STEP = 'shadow_step';
-    const SPIRIT_WELL = 'spirit_well';
-    const ENERGY_SPIKE = 'energy_spike';
-    const DAMNATION = 'damnation';
-    const ENTROPY = 'entropy';
+    const UNHOLY_BOLT = 'Unholy Bolt';
+    const DARK_SPEARS = 'Dark Spears';
+    const SHADOW_STEP = 'Shadow Step';
+    const SPIRIT_WELL = 'Spirit Well';
+    const ENERGY_SPIKE = 'Energy Spike';
+    const DAMNATION = 'Damnation';
+    const ENTROPY = 'Entropy';
+    const DARK_SORT = [
+        self::UNHOLY_BOLT, self::DARK_SPEARS, self::SHADOW_STEP, self::SPIRIT_WELL, self::ENERGY_SPIKE, self::DAMNATION, self::ENTROPY
+    ];
 
     // SS Precision skills
     const PRECISION = 'Precision';
@@ -101,7 +107,7 @@ class CharacterBuild
     const ELECTRODE = 'Electrode';
 
     // Common skill
-    const ENERGIZER = 'energizer';
+    const ENERGIZER = 'Energizer';
 
     // Bane skills
     const EIGHTLEGGEDDALLIES = 'eightleggeddallies';
@@ -126,15 +132,20 @@ class CharacterBuild
     const SUMMONINGSMASH = 'summoningsmash';
 
     // Blood Drinker skills
-    const SPINNINGBLADE = 'spinningblade';
-    const BLOODLETTER = 'bloodletter';
-    const BLADESFORCUTTING = 'bladesforcutting';
-    const BLOODSEEKERS = 'bloodseekers';
-    const LIVINGBARRIER = 'livingbarrier';
-    const RUPTURE = 'rupture';
-    const BLOODYCHALICE = 'bloodychalice';
-    const DRAIN = 'drain';
-    const DANCEOFDEATH = 'danceofdeath';
+    const SPINNINGBLADE = 'Spinning Blade';
+    const BLOODLETTER = 'Bloodletter';
+    const BLADESFORCUTTING = 'Blades for Cutting';
+    const BLOODSEEKERS = 'Blood Seekers';
+    const LIVINGBARRIER = 'Living Barrier';
+    const RUPTURE = 'Rupture';
+    const BLOODYCHALICE = 'Bloody Chalice';
+    const DRAIN = 'Drain';
+    const DANCEOFDEATH = 'Dance of Death';
+    const BLOOD_DRINKER_SORT = [
+        self::SPINNINGBLADE, self::BLOODLETTER, self::BLADESFORCUTTING,
+        self::BLOODSEEKERS, self::LIVINGBARRIER, self::RUPTURE,
+        self::BLOODYCHALICE, self::DRAIN, self::DANCEOFDEATH, self::ENERGIZER
+    ];
 
     // Coldheart skills
     const JAGGEDICE = 'jaggedice';
@@ -177,7 +188,7 @@ class CharacterBuild
         $this->data['class'] = $class;
         $this->data['relic'] = $relic;
         $this->data['skilltabs'] = $skilltabs;
-        $this->data['hotbar'] = $hotbar ?? new Hotbar;
+        $this->data['hotbar'] = $hotbar ?? new Hotbar([], $skilltabs);
         $this->data['legendariums'] = $legendariums;
     }
 
@@ -208,6 +219,11 @@ class CharacterBuild
     public function addSkillTab(CharacterSkillTab $skillTab): void
     {
         $this->data['skilltabs'][] = $skillTab;
+    }
+
+    public function getSkillTabs(): array
+    {
+        return $this->data['skilltabs'];
     }
 
     public function getSkillTab(string $name): CharacterSkillTab
