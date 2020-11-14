@@ -24,7 +24,7 @@ class BuildlinkParser
     const CLASS_TO_TREES = [
         CharacterBuild::DUSK_MAGE => [CharacterBuild::LIGHT, CharacterBuild::DARK],
         CharacterBuild::FORGED => [CharacterBuild::BARRAGE, CharacterBuild::BRAWL],
-        CharacterBuild::RAILMASTER => [CharacterBuild::CONDUCTOR, CharacterBuild::LINEAGE],
+        CharacterBuild::RAILMASTER => [CharacterBuild::CONDUCTOR, CharacterBuild::SLAMMER],
         CharacterBuild::SHARPSHOOTER => [CharacterBuild::PRECISION, CharacterBuild::ADVENTURER],
     ];
 
@@ -32,6 +32,11 @@ class BuildlinkParser
     protected $buildStart;
     protected $class;
     protected $characterBuild;
+
+    public function __construct()
+    {
+        Legendariums::init();
+    }
 
     public function parse(string $buildlink): CharacterBuild
     {
@@ -85,20 +90,16 @@ class BuildlinkParser
     private function parseHotbar(): void
     {
         $hotbarSkills = $this->getHotbar();
-        dd($hotbarSkills);
         $hotbar = new Hotbar($hotbarSkills, $this->characterBuild->getSkillTabs());
         $this->characterBuild->setHotbar($hotbar);
     }
 
     private function parseLegendariums(): void
     {
-        $legendariumsold = $this->getLegendariums();
-        $legendarium1 = new Legendarium;
-        $this->characterBuild->addLegendarium($legendarium1, 1);
-        $legendarium2 = new Legendarium;
-        $this->characterBuild->addLegendarium($legendarium2, 2);
-        $legendarium3 = new Legendarium;
-        $this->characterBuild->addLegendarium($legendarium3, 3);
+        $legendariumIds = $this->getLegendariums();
+        $this->characterBuild->addLegendarium(Legendariums::getLegendariumById($legendariumIds[0]), 1);
+        $this->characterBuild->addLegendarium(Legendariums::getLegendariumById($legendariumIds[1]), 2);
+        $this->characterBuild->addLegendarium(Legendariums::getLegendariumById($legendariumIds[2]), 3);
     }
 
     private function getClass(): string

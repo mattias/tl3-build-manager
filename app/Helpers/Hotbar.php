@@ -9,10 +9,13 @@ class Hotbar
     protected $hotbar = [];
 
     public function __construct(
-        $positions,
-        $skilltabs
+        $positions = [],
+        $skilltabs = []
     ) {
         foreach ($positions as $pos) {
+            if($pos === 1) {
+                $this->hotbar[] = new CharacterSkill('Basic Attack');
+            }
             $tab = $this->getTabFromPos($pos);
             $relativePosition = $this->getRelativePositionFromPos($pos);
             $this->hotbar[] = $skilltabs[$tab]->getSkills()[$relativePosition];

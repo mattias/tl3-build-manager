@@ -41,63 +41,81 @@ class CharacterBuild
 
     // SS Precision skills
     const PRECISION = 'Precision';
-    const TIGHT_GROUPING = 'tight_grouping';
-    const ONSLAUGHT = 'onslaught';
-    const TARGETED_STRIKES = 'targeted_strikes';
-    const RELOAD = 'reload';
-    const EXPLOSIVE_ARROW = 'explosive_arrow';
-    const HEART_SEEKER = 'heart_seeker';
-    const SCATTER_SHOT = 'scatter_shot';
+    const TIGHT_GROUPING = 'Tight Grouping';
+    const ONSLAUGHT = 'Onslaught';
+    const TARGETED_STRIKES = 'Targeted Strikes';
+    const RELOAD = 'Reload';
+    const EXPLOSIVE_ARROW = 'Explosive Arrow';
+    const HEART_SEEKER = 'Heart Seeker';
+    const SCATTERSHOT = 'Scattershot';
+    const PRECISION_SORT = [
+        self::TIGHT_GROUPING, self::ONSLAUGHT, self::TARGETED_STRIKES, self::RELOAD, self::EXPLOSIVE_ARROW, self::HEART_SEEKER, self::SCATTERSHOT
+    ];
 
     // SS Adventurer skills
     const ADVENTURER = 'Adventurer';
-    const SCOUTS_BONES = 'scouts_bones';
-    const GOBLIN_LEGION = 'goblin_legion';
-    const GHOST_VISAGE = 'ghost_visage';
-    const RIZZIS_FATE = 'rizzis_fate';
-    const SACRIFICE_TO_GOOSE = 'sacrifice_to_goose';
-    const CURSE_OF_PI_PI = 'curse_of_pi_pi';
-    const SHASTA = 'shasta';
+    const SCOUT_S_BONES = 'Scout\'s Bones';
+    const GOBLIN_LEGION = 'Goblin Legion';
+    const GHOST_VISAGE = 'Ghost Visage';
+    const RIZZI__S_FATE = 'Rizzi\\\'s Fate';
+    const SACRIFICE_TO_GOOSE = 'Sacrifice to Goose';
+    const CURSE_OF_PI__PI = 'Curse of Pi\\\'pi';
+    const LOYAL_SHASTA = 'Loyal Shasta';
+    const ADVENTURER_SORT = [
+        self::SCOUT_S_BONES, self::GOBLIN_LEGION, self::GHOST_VISAGE, self::RIZZI__S_FATE, self::SACRIFICE_TO_GOOSE, self::CURSE_OF_PI__PI, self::LOYAL_SHASTA
+    ];
 
     // Railmaster Conductor skills
     const CONDUCTOR = 'Conductor';
-    const BUILD_TRAIN = 'build_train';
-    const MORTAR_CAR = 'mortar_car';
-    const SHIELD_CAR = 'shield_car';
-    const SHOTGONNE_CAR = 'shotgonne_car';
-    const GHOST_TRAIN = 'ghost_train';
-    const SHOCKING_ROUNDS = 'shocking_rounds';
-    const FLAMETHROWER_CAR = 'flamethrower_car';
+    const BUILD_TRAIN = 'Build Train';
+    const MORTAR_CAR = 'Mortar Car';
+    const SHIELD_CAR = 'Shield Car';
+    const SHOTGONNE_CAR = 'Shotgonne Car';
+    const GHOST_TRAIN = 'Ghost Train';
+    const SHOCKING_ROUNDS = 'Shocking Rounds';
+    const FLAMETHROWER_CAR = 'Flamethrower Car';
+    const CONDUCTOR_SORT = [
+        self::BUILD_TRAIN, self::MORTAR_CAR, self::SHIELD_CAR, self::SHOTGONNE_CAR, self::GHOST_TRAIN, self::SHOCKING_ROUNDS, self::FLAMETHROWER_CAR
+    ];
 
-    // Railmaster Lineage skills
-    const LINEAGE = 'Lineage';
-    const POUND = 'pound';
-    const BLASTING_CHARGE = 'blasting_charge';
-    const HAMMER_SPIN = 'hammer_spin';
-    const FLYING_PICKS = 'flying_picks';
-    const LANTERN_FLASH = 'lantern_flash';
-    const TORQUE_SWING = 'torque_swing';
-    const SPIKE_DRIVE = 'spike_drive';
+    // Railmaster Slammer skills
+    const SLAMMER = 'Slammer';
+    const POUND = 'Pound';
+    const BLASTING_CHARGE = 'Blasting Charge';
+    const HAMMER_SPIN = 'Hammer Spin';
+    const FLYING_PICKS = 'Flying Picks';
+    const LANTERN_FLASH = 'Lantern Flash';
+    const TORQUE_SWING = 'Torque Swing';
+    const SPIKE_DRIVE = 'Spike Drive';
+    const SLAMMER_SORT = [
+        self::POUND, self::BLASTING_CHARGE, self::HAMMER_SPIN, self::FLYING_PICKS, self::LANTERN_FLASH, self::TORQUE_SWING, self::SPIKE_DRIVE
+    ];
 
     // Forged Barrage skills
     const BARRAGE = 'Barrage';
-    const RAPID_FIRE = 'rapid_fire';
-    const COAL_LAUNCH = 'coal_launch';
-    const SHOTGONNE_BLAST = 'shotgonne_blast';
-    const POISON_DART = 'poison_dart';
-    const SONIC_PULSE_ARM = 'sonic_pulse_arm';
-    const SLUG_SHOT = 'slug_shot';
-    const FURNANCE_BLAST = 'furnance_blast';
+    const RAPID_FIRE = 'Rapid Fire';
+    const VENT__COAL_LAUNCH = 'Vent: Coal Launch';
+    const SHOTGONNE_BLAST = 'Shotgonne Blast';
+    const POISON_DART = 'Poison Dart';
+    const SONIC_PULSE = 'Sonic Pulse';
+    const SLUG_SHOT = 'Slug Shot';
+    const VENT__FURNACE_BLAST = 'Vent: Furnace Blast';
+    const BARRAGE_SORT = [
+        self::RAPID_FIRE, self::VENT__COAL_LAUNCH, self::SHOTGONNE_BLAST, self::POISON_DART, self::SONIC_PULSE, self::SLUG_SHOT, self::VENT__FURNACE_BLAST
+    ];
 
     // Forged Brawl skills
     const BRAWL = 'Brawl';
-    const RAPID_STRIKE = 'rapid_strike';
-    const VORTEX_BOMB = 'vortex_bomb';
-    const RAMMING_ROBOT = 'ramming_robot';
-    const SERVO_DRIVEN_UPPERCUT = 'servo_driven_uppercut';
-    const FRACKING_STRIKE = 'fracking_strike';
-    const POWER_PROJECTION = 'power_projection';
-    const CYCLONE_MODE = 'cyclone_mode';
+    const RAPID_STRIKE = 'Rapid Strike';
+    const VENT__VORTEX_BOMB = 'Vent: Vortex Bomb';
+    const RAMMING_ROBOT = 'Ramming Robot';
+    const SERVO_DRIVEN_UPPERCUT = 'Servo-Driven Uppercut';
+    const VENT__FRACKING_STRIKE = 'Vent: Fracking Strike';
+    const POWER_PROJECTION = 'Power Projection';
+    const CYCLONE_MODE = 'Cyclone Mode';
+    const BRAWL_SORT = [
+        self::RAPID_STRIKE, self::VENT__VORTEX_BOMB, self::RAMMING_ROBOT, self::SERVO_DRIVEN_UPPERCUT, self::VENT__FRACKING_STRIKE, self::POWER_PROJECTION, self::CYCLONE_MODE
+    ];
 
     // Relics
     const BANE = 'Bane';
@@ -110,64 +128,82 @@ class CharacterBuild
     const ENERGIZER = 'Energizer';
 
     // Bane skills
-    const EIGHTLEGGEDDALLIES = 'eightleggeddallies';
-    const SPECTRALSPIDER = 'spectralspider';
-    const POISONNOVA = 'poisonnova';
-    const SPREADOFDEATH = 'spreadofdeath';
-    const STAFFEDUP = 'staffedup';
-    const VENOMOUSMAW = 'venomousmaw';
-    const MIASMA = 'miasma';
-    const PUPPETMASTER = 'puppetmaster';
-    const ARACHNIDASSAULT = 'arachnidassault';
+    const EIGHT_LEGGEDDALLIES = 'Eight-legged Allies';
+    const SPECTRAL_SPIDER = 'Spectral Spider';
+    const POISON_NOVA = 'Poison Nova';
+    const SPREAD_OF_DEATH = 'Spread of Death';
+    const STAFFING_UP = 'Staffing Up';
+    const VENOMOUS_MAW = 'Venomous Maw';
+    const MIASMA = 'Miasma';
+    const PUPPET_MASTER = 'Puppet Master';
+    const ARACHNID_ASSAULT = 'Arachnid Assault';
+    const BANE_SORT = [
+        self::EIGHT_LEGGEDDALLIES, self::SPECTRAL_SPIDER, self::POISON_NOVA, self::SPREAD_OF_DEATH,
+        self::STAFFING_UP, self::VENOMOUS_MAW, self::MIASMA, self::PUPPET_MASTER, self::ARACHNID_ASSAULT,
+        self::ENERGIZER
+    ];
 
     // Flaming Destroyer skills
-    const SWORDSMASH = 'swordsmash';
-    const IGNITIONSOURCE = 'ignitionsource';
-    const MAGMABURST = 'magmaburst';
-    const BLAZINGPILLAR = 'blazingpillar';
-    const GIANTSWINGS = 'giantswings';
-    const CLOAKOFFLAMES = 'cloakofflames';
-    const NIMBLEFLAMES = 'nimbleflames';
-    const FIRESTORM = 'firestorm';
-    const SUMMONINGSMASH = 'summoningsmash';
+    const SWORD_SMASH = 'Sword Smash';
+    const IGNITION_SOURCE = 'Ignition Source';
+    const MAGMA_BURST = 'Magma Burst';
+    const BLAZING_PILLAR = 'Blazing Pillar';
+    const GIANT_SWINGS = 'Giant Swings';
+    const CLOAK_OF_FLAMES = 'Cloak of Flames';
+    const NIMBLE_FLAMES = 'Nimble Flames';
+    const FIRESTORM = 'Firestorm';
+    const SUMMONING_SMASH = 'Summoning Smash';
+    const FLAMING_DESTROYER_SORT = [
+        self::SWORD_SMASH, self::IGNITION_SOURCE, self::MAGMA_BURST, self::BLAZING_PILLAR, self::GIANT_SWINGS, self::CLOAK_OF_FLAMES,
+        self::NIMBLE_FLAMES, self::FIRESTORM, self::SUMMONING_SMASH, self::ENERGIZER
+    ];
 
     // Blood Drinker skills
-    const SPINNINGBLADE = 'Spinning Blade';
+    const SPINNING_BLADE = 'Spinning Blade';
     const BLOODLETTER = 'Bloodletter';
-    const BLADESFORCUTTING = 'Blades for Cutting';
-    const BLOODSEEKERS = 'Blood Seekers';
-    const LIVINGBARRIER = 'Living Barrier';
+    const BLADES_FOR_CUTTING = 'Blades for Cutting';
+    const BLOOD_SEEKERS = 'Blood Seekers';
+    const LIVING_BARRIER = 'Living Barrier';
     const RUPTURE = 'Rupture';
-    const BLOODYCHALICE = 'Bloody Chalice';
+    const BLOODY_CHALICE = 'Bloody Chalice';
     const DRAIN = 'Drain';
-    const DANCEOFDEATH = 'Dance of Death';
+    const DANCE_OF_DEATH = 'Dance of Death';
     const BLOOD_DRINKER_SORT = [
-        self::SPINNINGBLADE, self::BLOODLETTER, self::BLADESFORCUTTING,
-        self::BLOODSEEKERS, self::LIVINGBARRIER, self::RUPTURE,
-        self::BLOODYCHALICE, self::DRAIN, self::DANCEOFDEATH, self::ENERGIZER
+        self::SPINNING_BLADE, self::BLOODLETTER, self::BLADES_FOR_CUTTING,
+        self::BLOOD_SEEKERS, self::LIVING_BARRIER, self::RUPTURE,
+        self::BLOODY_CHALICE, self::DRAIN, self::DANCE_OF_DEATH, self::ENERGIZER
     ];
 
     // Coldheart skills
-    const JAGGEDICE = 'jaggedice';
-    const ICESHIELD = 'iceshield';
-    const FROSTBLAST = 'frostblast';
-    const FROSTSKIN = 'frostskin';
-    const ICEGOLEM = 'icegolem';
-    const LARGEBORES = 'largebores';
-    const BREAKINGPOINT = 'breakingpoint';
-    const SNOWSTORM = 'snowstorm';
-    const COLDFRONT = 'coldfront';
+    const ICICLES = 'Icicles';
+    const JAGGED_ICE = 'Jagged Ice';
+    const ICE_SHIELD = 'Ice Shield';
+    const FROST_BLAST = 'Frost Blast';
+    const FROST_SKIN = 'Frost Skin';
+    const ICE_GOLEM = 'Ice Golem';
+    const LARGE_BORES = 'Large Bores';
+    const BREAKING_POINT = 'Breaking Point';
+    const SNOWSTORM = 'Snowstorm';
+    const COLD_FRONT = 'Cold Front';
+    const COLDHEART_SORT = [
+        self::JAGGED_ICE, self::ICE_SHIELD, self::FROST_BLAST, self::FROST_SKIN, self::ICE_GOLEM,
+        self::LARGE_BORES, self::BREAKING_POINT, self::SNOWSTORM, self::COLD_FRONT, self::ENERGIZER
+    ];
 
     // Electrode skills
-    const LOCALIZEDSTORM = 'localizedstorm';
-    const SHOCKINGDISPLAY = 'shockingdisplay';
-    const SHOCKINGFORCE = 'shockingforce';
-    const CHAOTICSTRIKES = 'chaoticstrikes';
-    const LIGHTNINGBARRIER = 'lightningbarrier';
-    const TINGLINGSENSATION = 'tinglingsensation';
-    const LIGHTNINGSTRIKE = 'lightningstrike';
-    const CONJUREELECTRODE = 'conjureelectrode';
-    const THOUSANDVOLTBURST = 'thousandvoltburst';
+    const LOCALIZED_STORM = 'Localized Storm';
+    const SHOCKING_DISPLAY = 'Shocking Display';
+    const SHOCKING_FORCE = 'Shocking Force';
+    const CHAOTIC_STRIKES = 'Chaotic Strikes';
+    const LIGHTNING_BARRIER = 'Lightning Barrier';
+    const TINGLING_SENSATION = 'Tingling Sensation';
+    const LIGHTNING_STRIKE = 'Lightning Strike';
+    const CONJURE_ELECTRODE = 'Conjure Electrode';
+    const THOUSAND_VOLT_BURST = 'Thousand-Volt Burst';
+    const ELECTRODE_SORT = [
+        self::LOCALIZED_STORM, self::SHOCKING_DISPLAY, self::SHOCKING_FORCE, self::CHAOTIC_STRIKES, self::LIGHTNING_BARRIER,
+        self::TINGLING_SENSATION, self::LIGHTNING_STRIKE, self::CONJURE_ELECTRODE, self::THOUSAND_VOLT_BURST, self::ENERGIZER
+    ];
 
     private $data = [
         'class' => '',
