@@ -12,35 +12,12 @@ class Builds extends Component
 {
     use WithPagination;
 
-    public $buildsRaw = [];
-    public $buildsLinks;
-    public $builds;
-
-    protected $listeners = ['buildsUpdated' => 'refreshBuildsPagination'];
+    public $builds = [];
 
     public function mount()
     {
-        $this->refreshBuildsPagination();
-    }
-
-    public function refreshBuildsPagination()
-    {
-        $perPage = 5;
-        $page = LengthAwarePaginator::resolveCurrentPage();
-        $builds = collect($this->buildsRaw);
-
-        $this->builds = $builds->forPage($page, $perPage);
-
-        $this->buildsLinks = (new LengthAwarePaginator($this->builds, $builds->count(), $perPage, $page, [
-            'path' => '/builds/',
-            'pageName' => 'page',
-        ]))->links()->render();
-    }
-
-    public function setPage($page)
-    {
-        $this->page = $page;
-        $this->refreshBuildsPagination();
+        // TODO: Read from database
+        // TODO: Create seed
     }
 
     public function render()

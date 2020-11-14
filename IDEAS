@@ -1,0 +1,16 @@
+* Welcome page, information and links to public pages
+* Admin
+Admin page which can add classes and skills
+It can add a skill based on TL3 version, frontend will always use the latest when creating a new build, but older builds will then still show the version it was saved with
+* Accounts
+Accounts to save builds on
+* Skill calculator for all classes and relics
+* Leveling feature
+Show exactly what to put a point in at what level
+* Save feature
+Save builds to your account with name, description
+Can be public or private
+* Shareable links
+* Voting
+Public page with weekly voted builds, monthly voted builds and yearly voted builds.
+Also browse builds that are public.
