@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/builds', \App\Http\Livewire\Builds::class)->name('builds');
+Route::get('/leaderboards', \App\Http\Livewire\Leaderboards::class)->name('leaderboards');
 
-Route::get('/skills', \App\Http\Livewire\Skills::class)->name('skills');
+Route::get('/build', \App\Http\Livewire\Build::class)->name('build');
