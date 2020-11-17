@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Helpers;
 
+use App\Helpers\CharacterBuild;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -73,5 +74,36 @@ class CharacterSkillTest extends TestCase
         $characterSkill->setLevel(6);
 
         $this->assertEquals(6, $characterSkill->getLevel());
+    }
+
+    /** @test */
+    public function it_can_get_which_tree_it_belongs_to()
+    {
+        $displayName = 'Holy Fury';
+        $requiredLevelInSkillTab = 5;
+        $skillTabRow = 2;
+        $skillTabColumn = 2;
+        $skillType = 'Active';
+        $perLevelBonusTexts = [];
+        $perLevelDescriptions = [];
+        $tierBonusDescriptions = [];
+        $level = 5;
+        $tree = 'Light';
+
+        $characterSkill = new \App\Helpers\CharacterSkill(
+            $displayName,
+            $requiredLevelInSkillTab,
+            $skillTabRow,
+            $skillTabColumn,
+            $skillType,
+            $perLevelBonusTexts,
+            $perLevelDescriptions,
+            $tierBonusDescriptions,
+            $level,
+            $tree
+        );
+
+
+        $this->assertEquals(CharacterBuild::LIGHT, $characterSkill->getTree());
     }
 }

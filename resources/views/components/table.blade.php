@@ -20,23 +20,18 @@
                     <tbody class="bg-white divide-y divide-gray-200" x-max="1">
                         @if ($data)
                             @foreach ($data as $row)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-no-wrap">
-                                        <div class="text-sm leading-5 text-gray-900">@isset($row['name'])
-                                            {{ $row['name'] }} @endisset
-                                        </div>
-                                        <div class="text-sm leading-5 text-gray-500">@isset($row['author'])
-                                            {{ $row['author'] }} @endisset
-                                        </div>
+                                <tr wire:key="data-field-id-{{ $row->id }}">
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                                        @isset($row['name']) {{ $row['name'] }} @endisset
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                        @isset($row['description']) {{ $row['description'] }} @endisset
+                                        @isset($row['link']) @livewire('hotbar', ['buildlink' => $row['link']]) @endisset
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                                         @isset($row['votes']) {{ $row['votes'] }} @endisset
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                        @isset($row['link']) @livewire('build-hotbar', ['buildlink' => $row['link']]) @endisset
+                                        @isset($row['link']) {{ $row['link'] }} @endisset
                                     </td>
                                 </tr>
                             @endforeach

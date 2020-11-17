@@ -13,6 +13,7 @@ class CharacterSkill
     protected $perLevelDescriptions;
     protected $tierBonusDescriptions;
     protected $level;
+    protected $tree;
 
     public function __construct(
         string $displayName = '',
@@ -23,7 +24,8 @@ class CharacterSkill
         array $perLevelBonusTexts = [],
         array $perLevelDescriptions = [],
         array $tierBonusDescriptions = [],
-        int $level = 1
+        int $level = 1,
+        string $tree = ''
     ) {
         $this->displayName = $displayName;
         $this->requiredLevelInSkillTab = $requiredLevelInSkillTab;
@@ -34,6 +36,7 @@ class CharacterSkill
         $this->perLevelDescriptions = $perLevelDescriptions;
         $this->tierBonusDescriptions = $tierBonusDescriptions;
         $this->level = $level;
+        $this->tree = $tree;
     }
 
     public function setDisplayName(string $displayName): void
@@ -124,5 +127,10 @@ class CharacterSkill
     public function getLevel(): int
     {
         return $this->level;
+    }
+
+    public function getTree(): string
+    {
+        return $this->tree;
     }
 }

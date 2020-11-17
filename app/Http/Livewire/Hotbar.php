@@ -2,22 +2,27 @@
 
 namespace App\Http\Livewire;
 
+use App\Helpers\BuildlinkParser;
+use App\Helpers\SkillIconFetcher;
 use Livewire\Component;
 
 class Hotbar extends Component
 {
     public $buildlink = '';
-    public $hotbar = [
-        '/images/relics/relic_blooddrinker_bloodletter.png',
-        '/images/relics/relic_blooddrinker_danceofdeath.png',
-        '/images/relics/relic_blooddrinker_livingbarrier.png',
-        '/images/relics/relic_blooddrinker_bloodletter.png',
-        '/images/relics/relic_blooddrinker_bloodletter.png',
-        '/images/relics/relic_blooddrinker_bloodletter.png',
-        '/images/relics/relic_blooddrinker_bloodseekers.png',
-        '/images/relics/relic_blooddrinker_bloodletter.png',
-        '/images/relics/relic_blooddrinker_spinningblade.png',
-    ];
+    public $hotbar = [];
+
+    public function mount(BuildlinkParser $buildlinkParser, SkillIconFetcher $skillIconFetcher)
+    {
+        $characterBuild = $buildlinkParser->parse($this->buildlink);
+        $hotbar = $characterBuild->getHotbar();
+        for ($i = 0; $i < 9; $i++) {
+            $this->hotbar[$i] = $skillIconFetcher->get(
+                $characterBuild->getClass(),
+                $hotbar->getPosition($i)->getTree(),
+                $hotbar->getPosition($i)->getDisplayName()
+            );
+        }
+    }
 
     public function render()
     {

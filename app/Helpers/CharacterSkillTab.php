@@ -29,7 +29,8 @@ class CharacterSkillTab
                         $skill['perLevelBonusTexts'],
                         $skill['perLevelDescriptions'],
                         $skill['tierBonusDescriptions'],
-                        $levels[$key]
+                        $levels[$key],
+                        $displayName
                     );
                 }
                 ksort($this->skills);

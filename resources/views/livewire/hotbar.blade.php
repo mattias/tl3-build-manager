@@ -1,4 +1,3 @@
-{{ $buildlink }}
 <div class="flex">
     <div class="w-1/9 w-12 h-12">
         <img src="{{ $hotbar[0] }}" />
