@@ -4,7 +4,7 @@ module.exports = {
     './resources/css/**/*.css',
   ],
   theme: {
-    extend: {}
+    extend: {},
   },
   variants: {},
   plugins: [
