@@ -23,6 +23,7 @@ class CreateBuildsTest extends TestCase
     /** @test */
     public function it_can_save_build_to_database()
     {
+        $this->withoutExceptionHandling();
         $user = \App\Models\User::factory()->create([
             'email' => 'builder@example.com'
         ]);
@@ -32,8 +33,7 @@ class CreateBuildsTest extends TestCase
         Livewire::actingAs($user)->test('build')
             ->set('name', $name)
             ->set('link', $link)
-            ->call('save')
-        ;
+            ->call('save');
 
         $build = $user->builds->first();
 
@@ -54,8 +54,21 @@ class CreateBuildsTest extends TestCase
             ->set('name', $name)
             ->set('link', $link)
             ->call('resetLink')
-            ->assertSet('link', 'https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=22000000000000000000000000000000000;0;0;0')
-        ;
+            ->assertSet('link', 'https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=22000000000000000000000000000000000;0;0;0');
     }
 
+    /** @test */
+    public function it_has_previously_saved_builds_on_mount()
+    {
+        $user = \App\Models\User::factory()->create([
+            'email' => 'builder@example.com'
+        ]);
+
+        $builds = \App\Models\Build::factory(10)->create(
+            ['user_id' => $user->id]
+        );
+
+        Livewire::actingAs($user)->test('build')
+            ->assertSet('builds', $builds->toArray());
+    }
 }

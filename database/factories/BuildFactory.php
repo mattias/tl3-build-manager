@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Builds;
+use App\Models\Build;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BuildsFactory extends Factory
+class BuildFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Builds::class;
+    protected $model = Build::class;
 
     /**
      * Define the model's default state.

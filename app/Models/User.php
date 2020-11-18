@@ -43,6 +43,6 @@ class User extends Authenticatable
 
     public function builds()
     {
-        return $this->hasMany(Builds::class);
+        return $this->hasMany(Build::class);
     }
 }

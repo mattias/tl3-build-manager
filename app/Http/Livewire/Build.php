@@ -9,15 +9,28 @@ class Build extends Component
     public $name = '';
     public $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html';
 
+    public $builds = [];
+
     protected $rules = [
         'name' => 'required',
         'link' => 'required',
     ];
 
+    public function mount()
+    {
+        if(auth()->check()) // only when logged in
+        {
+            $this->builds = auth()->user()->builds->toArray();
+        }
+    }
+
     public function save()
     {
-        auth()->user()->builds()->create(
-            $this->validate()
+        $this->validate();
+
+        auth()->user()->builds()->updateOrCreate(
+            ['name' => $this->name],
+            ['link' => $this->link]
         );
     }
 

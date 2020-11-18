@@ -1,29 +1,10 @@
 <div class="flex">
-    <div class="w-1/9 w-12 h-12 mr-1">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[0] }}" />
-    </div>
-    <div class="w-1/9 w-12 h-12 mr-1">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[1] }}" />
-    </div>
-    <div class="w-1/9 w-12 h-12 mr-1">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[2] }}" />
-    </div>
-    <div class="w-1/9 w-12 h-12 mr-1">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[3] }}" />
-    </div>
-    <div class="w-1/9 w-12 h-12 mr-1">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[4] }}" />
-    </div>
-    <div class="w-1/9 w-12 h-12 mr-1">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[5] }}" />
-    </div>
-    <div class="w-1/9 w-12 h-12 mr-1">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[6] }}" />
-    </div>
-    <div class="w-1/9 w-12 h-12 mr-1">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[7] }}" />
-    </div>
-    <div class="w-1/9 w-12 h-12">
-        <img class="rounded shadow cursor-pointer" src="{{ $hotbar[8] }}" />
-    </div>
+    @foreach ($hotbar as $index => $skill)
+        <div class="w-1/9 w-12 h-12 mr-1 flex items-center justify-center">
+            <div>
+                <span class="text-xs text-center text-white m-1 w-4 h-4 flex items-center justify-center bg-gray-900 rounded-full">{{ $index+1 }}</span>
+                <img class="rounded shadow cursor-pointer" src="{{ $skill }}" />
+            </div>
+        </div>
+    @endforeach
 </div>

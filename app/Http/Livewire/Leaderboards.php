@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Builds;
+use App\Models\Build;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,7 +15,7 @@ class Leaderboards extends Component
     public function render()
     {
         return view('livewire.leaderboards', [
-            'builds' => Builds::paginate(5),
+            'builds' => Build::paginate(5),
         ]);
     }
 }
