@@ -35,7 +35,7 @@ class CreateBuildsTest extends TestCase
             ->set('link', $link)
             ->call('save');
 
-        $build = $user->builds->first();
+        $build = $user->builds()->first();
 
         $this->assertEquals($name, $build->name);
         $this->assertEquals($link, $build->link);
