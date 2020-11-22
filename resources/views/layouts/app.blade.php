@@ -11,8 +11,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @livewireStyles
@@ -23,6 +21,7 @@
     {{ $slot }}
 
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script>
     @stack('scripts')
 </body>

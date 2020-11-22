@@ -23,7 +23,6 @@ class CreateBuildsTest extends TestCase
     /** @test */
     public function it_can_save_build_to_database()
     {
-        $this->withoutExceptionHandling();
         $user = \App\Models\User::factory()->create([
             'email' => 'builder@example.com'
         ]);
@@ -70,5 +69,22 @@ class CreateBuildsTest extends TestCase
 
         Livewire::actingAs($user)->test('build')
             ->assertSet('builds', $builds->toArray());
+    }
+
+    /** @test */
+    public function it_notifies_if_user_forgot_to_press_click_to_copy_when_clicking_save()
+    {
+        $user = \App\Models\User::factory()->create([
+            'email' => 'builder@example.com'
+        ]);
+
+        $name = 'My build';
+        $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html';
+
+        Livewire::actingAs($user)->test('build')
+            ->set('name', $name)
+            ->set('link', $link)
+            ->call('save')
+            ->assertDispatchedBrowserEvent('notify');
     }
 }

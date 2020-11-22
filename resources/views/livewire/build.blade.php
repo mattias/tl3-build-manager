@@ -96,6 +96,7 @@
         if (event.origin !== "https://tools.torchlightfansite.com")
             return;
 
+        @this.lastLink = @this.link;
         @this.link = event.data;
     }, false);
 

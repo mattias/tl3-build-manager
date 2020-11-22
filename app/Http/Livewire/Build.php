@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class Build extends Component
 {
     public $name = '';
+    public $lastLink = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html';
     public $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html';
 
     public $builds = [];
@@ -18,7 +20,7 @@ class Build extends Component
 
     public function mount()
     {
-        if(auth()->check()) // only when logged in
+        if (auth()->check()) // only when logged in
         {
             $this->builds = auth()->user()->builds->toArray();
         }
@@ -26,12 +28,19 @@ class Build extends Component
 
     public function save()
     {
+        if (!$this->linkHasChanged()) {
+            $this->dispatchBrowserEvent('notify', 'You first have to click "click to copy" in the skill calculator before you can save.');
+            return;
+        }
+
         $this->validate();
 
         auth()->user()->builds()->updateOrCreate(
             ['name' => $this->name],
             ['link' => $this->link]
         );
+
+        $this->linkChanged = false;
     }
 
     public function resetLink()
@@ -45,5 +54,10 @@ class Build extends Component
     public function render()
     {
         return view('livewire.build');
+    }
+
+    private function linkHasChanged(): bool
+    {
+        return $this->link !== $this->lastLink;
     }
 }
