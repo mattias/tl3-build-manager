@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
@@ -12,6 +14,7 @@ class Build extends Component
     public $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html';
 
     public $builds = [];
+    public $selected = [];
 
     protected $rules = [
         'name' => 'required',
@@ -20,9 +23,30 @@ class Build extends Component
 
     public function mount()
     {
+        // Temporary while testing
+        $user = User::find(1);
+        Auth::login($user, true);
+
+        $this->selected = [
+            'name' => 'Select a build',
+        ];
+
         if (auth()->check()) // only when logged in
         {
             $this->builds = auth()->user()->builds->toArray();
+        }
+    }
+
+    public function select($buildName)
+    {
+        foreach ($this->builds as $build) {
+            if ($build['name'] === $buildName) {
+                $this->selected = $build;
+                $this->name = $build['name'];
+                $this->lastLink = $this->link;
+                $this->link = $build['link'];
+                break;
+            }
         }
     }
 
@@ -40,7 +64,7 @@ class Build extends Component
             ['link' => $this->link]
         );
 
-        $this->linkChanged = false;
+        $this->builds = auth()->user()->builds->toArray();
     }
 
     public function resetLink()

@@ -40,32 +40,36 @@
                     </div>
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <button wire:click="save"
-                        class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
-                        Save
-                    </button>
+                    @if(auth()->check())
+                        <button wire:click="save"
+                            class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                            Save
+                        </button>
 
-                    <button wire:click="resetLink"
-                        class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
-                        Reset
-                    </button>
+                        <button wire:click="resetLink"
+                            class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                            Reset
+                        </button>
 
-                    <button
-                        class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
-                        Delete
-                    </button>
+                        <button
+                            class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                            Delete
+                        </button>
 
-                    <div>
-                        <div class="relative rounded-md shadow-sm mr-5 ml-5">
-                            <input id="name" wire:model.lazy="name"
-                                class="form-input block w-full sm:text-sm sm:leading-5"
-                                placeholder="My awesome build name">
+                        <div>
+                            <div class="relative rounded-md shadow-sm mr-5 ml-5">
+                                <input id="name" wire:model.lazy="name"
+                                    class="form-input block w-full sm:text-sm sm:leading-5"
+                                    placeholder="My awesome build name">
+                            </div>
                         </div>
-                    </div>
 
-                    <x-dropdown /> <!-- It takes builds and currently selected build -->
+                        <x-dropdown :options="$builds" :selected="$selected" /> <!-- It takes builds and currently selected build -->
 
-                    <x-profile-menu />
+                        <x-profile-menu />
+                    @else
+                        <span class="text-white"><a href="/login" class="underline hover:no-underline hover:text-gray-300">Login</a> to create and share builds</span>
+                    @endif
                 </div>
             </div>
         </div>
