@@ -23,10 +23,6 @@ class Build extends Component
 
     public function mount()
     {
-        // Temporary while testing
-        $user = User::find(1);
-        Auth::login($user, true);
-
         $this->selected = [
             'name' => 'Select a build',
         ];

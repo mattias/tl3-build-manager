@@ -26,6 +26,7 @@ class CreateBuildsTest extends TestCase
         $user = \App\Models\User::factory()->create([
             'email' => 'builder@example.com'
         ]);
+
         $name = 'My awesome build';
         $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=221234567765413210000101014mga08713;28;16;45';
 
@@ -59,16 +60,11 @@ class CreateBuildsTest extends TestCase
     /** @test */
     public function it_has_previously_saved_builds_on_mount()
     {
-        $user = \App\Models\User::factory()->create([
-            'email' => 'builder@example.com'
-        ]);
-
-        $builds = \App\Models\Build::factory(10)->create(
-            ['user_id' => $user->id]
-        );
+        $user = \App\Models\User::find(1);
+        $builds = $user->builds->toArray();
 
         Livewire::actingAs($user)->test('build')
-            ->assertSet('builds', $builds->toArray());
+            ->assertSet('builds', $builds);
     }
 
     /** @test */
