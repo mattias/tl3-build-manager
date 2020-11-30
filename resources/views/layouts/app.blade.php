@@ -18,6 +18,8 @@
 </head>
 
 <body>
+    <x-navbar />
+
     {{ $slot }}
 
     <x-notification />

@@ -1,5 +1,5 @@
 <div>
-    <nav x-data="{ open: false }" class="bg-gray-800">
+    <nav x-data="{ open: false }" class="bg-gray-900">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between h-16">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -27,17 +27,7 @@
                     </button>
                 </div>
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="flex-shrink-0 text-cool-gray-100">
-                        TL3 Build Manager
-                    </div>
-                    <div class="hidden sm:block sm:ml-6">
-                        <div class="flex">
-                            <a href="{{ route('build') }}"
-                                class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Build</a>
-                            <a href="{{ route('leaderboards') }}"
-                                class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Leaderboards</a>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     @if(auth()->check())
@@ -65,10 +55,6 @@
                         </div>
 
                         <x-dropdown :options="$builds" :selected="$selected" /> <!-- It takes builds and currently selected build -->
-
-                        <x-profile-menu />
-                    @else
-                        <span class="text-white"><a href="/login" class="underline hover:no-underline hover:text-gray-300">Login</a> to create and share builds</span>
                     @endif
                 </div>
             </div>
@@ -85,7 +71,7 @@
         </div>
     </nav>
 
-    <div class="bg-gray-900">
+    <div class="bg-indigo-900">
         <div class="text-cool-gray-100 max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             Last build: {{ $link }}
         </div>

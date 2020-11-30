@@ -1,8 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/register', \App\Http\Livewire\Auth\Register::class);
+Route::get('/login', \App\Http\Livewire\Auth\Login::class);
+Route::get('/logout', function() {
+    Auth::logout();
+    return redirect()->to('build');
+});
 
 Route::get('/leaderboards', \App\Http\Livewire\Leaderboards::class)->name('leaderboards');
 
