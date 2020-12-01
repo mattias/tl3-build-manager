@@ -10,6 +10,10 @@ Route::get('/logout', function() {
     return redirect()->to('build');
 });
 
+Route::get('/', function() {
+    return redirect()->to('build');
+})->name('home');
+
 Route::get('/leaderboards', \App\Http\Livewire\Leaderboards::class)->name('leaderboards');
 
 Route::get('/build', \App\Http\Livewire\Build::class)->name('build');

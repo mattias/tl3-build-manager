@@ -8,9 +8,18 @@
             <form wire:submit.prevent="register">
                 <div class="mt-4 w-full">
                     <input
-                        wire:model="email"
+                        wire:model.lazy="name"
+                        class="w-full mt-2 py-2 px-4 bg-white text-gray-700 border border-gray-300 rounded block placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring"
+                        type="text" placeholder="Name" aria-label="Name">
+                    @error('name') <span class="text-red-600">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="mt-4 w-full">
+                    <input
+                        wire:model.lazy="email"
                         class="w-full mt-2 py-2 px-4 bg-white text-gray-700 border border-gray-300 rounded block placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring"
                         type="email" placeholder="Email Address" aria-label="Email Address">
+                    @error('email') <span class="text-red-600">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="mt-4 w-full">
@@ -18,6 +27,7 @@
                         wire:model="password"
                         class="w-full mt-2 py-2 px-4 bg-white text-gray-700 border border-gray-300 rounded block placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring"
                         type="password" placeholder="Password" aria-label="Password">
+                    @error('password') <span class="text-red-600">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="mt-4 w-full">
@@ -25,11 +35,11 @@
                         wire:model="passwordConfirmation"
                         class="w-full mt-2 py-2 px-4 bg-white text-gray-700 border border-gray-300 rounded block placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring"
                         type="password" placeholder="Password Confirmation" aria-label="Password Confirmation">
+                     @error('passwordConfirmation') <span class="text-red-600">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="flex justify-center items-center mt-4">
-                    <button class="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
-                        type="button">
+                    <button type="submit" class="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none">
                         Register
                     </button>
                 </div>
