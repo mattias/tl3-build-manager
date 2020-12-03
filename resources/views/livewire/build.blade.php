@@ -31,7 +31,7 @@
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     @if(auth()->check())
-                        <button wire:click="save"
+                        <button x-data @click="getLink()"
                             class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
                             Save
                         </button>
@@ -82,12 +82,21 @@
 </div>
 
 <script>
+    function getLink() {
+        let calculator = document.querySelector("#skill-calculator").contentWindow;
+        calculator.postMessage(
+            "copyLink",
+            "https://tools.torchlightfansite.com"
+        );
+    }
+
     window.addEventListener('message', (event) => {
         if (event.origin !== "https://tools.torchlightfansite.com")
             return;
 
         @this.lastLink = @this.link;
         @this.link = event.data;
+        @this.save();
     }, false);
 
 </script>
