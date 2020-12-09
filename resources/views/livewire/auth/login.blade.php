@@ -1,4 +1,4 @@
-<div class="h-screen grid grid-cols-1 place-items-center">
+<div class="bg-gray-900 h-screen grid grid-cols-1 place-items-center">
     <div class="bg-white w-full max-w-sm rounded-lg shadow-md overflow-hidden mx-auto">
         <div class="py-4 px-6">
             <h2 class="text-center font-bold text-gray-700 text-3xl">TL3 Build Manager</h2>
