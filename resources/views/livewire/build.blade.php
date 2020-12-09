@@ -41,7 +41,7 @@
                             Reset
                         </button>
 
-                        <button
+                        <button wire:click="delete"
                             class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
                             Delete
                         </button>
@@ -94,7 +94,6 @@
         if (event.origin !== "https://tools.torchlightfansite.com")
             return;
 
-        @this.lastLink = @this.link;
         @this.link = event.data;
         @this.save();
     }, false);

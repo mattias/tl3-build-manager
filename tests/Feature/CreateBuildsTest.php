@@ -58,6 +58,22 @@ class CreateBuildsTest extends TestCase
     }
 
     /** @test */
+    public function it_does_not_try_to_reset_if_already_reset()
+    {
+        $user = \App\Models\User::factory()->create([
+            'email' => 'builder@example.com'
+        ]);
+        $name = 'My awesome build';
+        $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html';
+
+        Livewire::actingAs($user)->test('build')
+            ->set('name', $name)
+            ->set('link', $link)
+            ->call('resetLink')
+            ->assertSet('link', 'https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html');
+    }
+
+    /** @test */
     public function it_has_previously_saved_builds_on_mount()
     {
         $user = \App\Models\User::find(1);
@@ -68,19 +84,31 @@ class CreateBuildsTest extends TestCase
     }
 
     /** @test */
-    public function it_notifies_if_user_forgot_to_press_click_to_copy_when_clicking_save()
+    public function it_can_delete_a_build()
     {
         $user = \App\Models\User::factory()->create([
             'email' => 'builder@example.com'
         ]);
 
-        $name = 'My build';
-        $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html';
+        $name = 'My awesome build';
+        $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=221234567765413210000101014mga08713;28;16;45';
+
+        $buildData = [
+            'user_id' => $user->id,
+            'name' => $name,
+            'link' => $link,
+        ];
+
+        \App\Models\Build::factory()->create($buildData);
+
+        $this->assertDatabaseHas('builds', $buildData);
 
         Livewire::actingAs($user)->test('build')
             ->set('name', $name)
             ->set('link', $link)
-            ->call('save')
-            ->assertDispatchedBrowserEvent('notify');
+            ->call('delete')
+            ->assertSet('link', 'https://tools.torchlightfansite.com/tlfskillcalculator/build-forged.html?build=22000000000000000000000000000000000;0;0;0');
+
+        $this->assertDatabaseMissing('builds', $buildData);
     }
 }

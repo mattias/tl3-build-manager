@@ -10,7 +10,6 @@ use Livewire\Component;
 class Build extends Component
 {
     public $name = '';
-    public $lastLink = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html';
     public $link = 'https://tools.torchlightfansite.com/tlfskillcalculator/build-dm.html';
 
     public $builds = [];
@@ -39,7 +38,6 @@ class Build extends Component
             if ($build['name'] === $buildName) {
                 $this->selected = $build;
                 $this->name = $build['name'];
-                $this->lastLink = $this->link;
                 $this->link = $build['link'];
                 break;
             }
@@ -48,11 +46,6 @@ class Build extends Component
 
     public function save()
     {
-        if (!$this->linkHasChanged()) {
-            $this->dispatchBrowserEvent('notify', 'You first have to click "click to copy" in the skill calculator before you can save.');
-            return;
-        }
-
         $this->validate();
 
         auth()->user()->builds()->updateOrCreate(
@@ -65,19 +58,30 @@ class Build extends Component
 
     public function resetLink()
     {
-        $buildStart = strpos($this->link, '?');
-        $buildStart += 9; // Moves to the beginning of the data
-        $beginning = substr($this->link, 0, $buildStart);
-        $this->link = $beginning . '000000000000000000000000000000000;0;0;0';
+        if ($buildStart = strpos($this->link, '?')) {
+            $buildStart += 9; // Moves to the beginning of the data
+            $beginning = substr($this->link, 0, $buildStart);
+            $this->link = $beginning . '000000000000000000000000000000000;0;0;0';
+        }
+    }
+
+    public function delete()
+    {
+        $this->validate();
+
+        auth()->user()->builds()->where('name', $this->name)->delete();
+
+        $this->resetLink();
+        $this->name = '';
+        $this->selected = [
+            'name' => 'Select a build',
+        ];
+
+        $this->builds = auth()->user()->builds->toArray();
     }
 
     public function render()
     {
         return view('livewire.build');
-    }
-
-    private function linkHasChanged(): bool
-    {
-        return $this->link !== $this->lastLink;
     }
 }
