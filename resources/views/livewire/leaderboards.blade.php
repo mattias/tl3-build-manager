@@ -7,37 +7,35 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead>
                                 <tr>
-                                    @if ($headers)
-                                        @foreach ($headers as $row)
-                                            <th
-                                                class="px-6 py-3 bg-indigo-800 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider">
-                                                {{ $row }}
-                                            </th>
-                                        @endforeach
-                                    @endif
+                                    @foreach ($headers as $row)
+                                        <th
+                                            class="px-6 py-3 bg-indigo-800 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider">
+                                            {{ $row }}
+                                        </th>
+                                    @endforeach
                                 </tr>
                             </thead>
                             <tbody class="bg-gray-800 divide-y divide-gray-700" x-max="1">
-                                @if ($builds)
-                                    @foreach ($builds as $row)
-                                        <tr wire:key="data-field-id-{{ $row->id }}">
-                                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
-                                                @isset($row['name']) {{ $row['name'] }} @endisset
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
-                                                @isset($row['link']) @livewire('hotbar', ['buildlink' => $row['link']])
-                                                @endisset
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
-                                                @isset($row['votes']) {{ $row['votes'] }} @endisset
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
-                                                @isset($row['link']) <a href="{{ $row['link'] }}"
-                                                    class="underline hover:no-underline">Source</a> @endisset
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
+                                @foreach ($builds as $row)
+                                    <tr wire:key="data-field-id-{{ $row->id }}">
+                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
+                                            {{ $row->name }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
+                                            {{ $row->user->name }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
+                                            @livewire('hotbar', ['buildlink' => $row->link], key($row->id))
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
+                                           {{ $row->votes }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
+                                            <a href="{{ $row->link }}"
+                                                class="underline hover:no-underline">Source</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

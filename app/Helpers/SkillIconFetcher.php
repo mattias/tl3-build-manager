@@ -16,7 +16,7 @@ class SkillIconFetcher
 
     public function get(string $class, string $tree, string $skill)
     {
-        $icon_url = config('app.url') . '/images/skills/';
+        $icon_url = '/images/skills/';
 
         if(empty($tree)) {
             return $icon_url . 'sword_basic_attack.png';

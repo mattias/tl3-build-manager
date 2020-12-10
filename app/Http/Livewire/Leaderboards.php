@@ -10,7 +10,7 @@ class Leaderboards extends Component
 {
     use WithPagination;
 
-    public $headers = ['Build name', 'Hotbar', 'Votes', 'Link'];
+    public $headers = ['Build name', 'Username', 'Hotbar', 'Votes', 'Link'];
 
     public function render()
     {
