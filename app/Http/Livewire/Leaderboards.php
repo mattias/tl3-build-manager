@@ -11,11 +11,17 @@ class Leaderboards extends Component
     use WithPagination;
 
     public $headers = ['Build name', 'Username', 'Hotbar', 'Votes', 'Link'];
+    public $search = '';
+
+    public function updatingSearch()
+    {
+        $this->page = 1;
+    }
 
     public function render()
     {
         return view('livewire.leaderboards', [
-            'builds' => Build::paginate(5),
+            'builds' => Build::search('name', $this->search)->paginate(5),
         ]);
     }
 }
